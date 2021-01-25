@@ -19,7 +19,7 @@ package com.ichi2.utils;
 import android.os.Build;
 
 import com.google.common.collect.Sets;
-import com.ichi2.anki.RobolectricTest;
+import com.ichi2.lowanki.RobolectricTest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -16,8 +16,8 @@
 
 package com.ichi2.libanki;
 
-import com.ichi2.anki.RobolectricTest;
-import com.ichi2.anki.exception.ImportExportException;
+import com.ichi2.lowanki.RobolectricTest;
+import com.ichi2.lowanki.exception.ImportExportException;
 import com.ichi2.libanki.exception.EmptyMediaException;
 
 import org.junit.Assert;

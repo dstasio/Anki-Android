@@ -24,9 +24,9 @@ package com.ichi2.libanki;
 import android.content.ContentValues;
 import android.text.TextUtils;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.exception.ConfirmModSchemaException;
-import com.ichi2.anki.exception.DeckRenameException;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.exception.ConfirmModSchemaException;
+import com.ichi2.lowanki.exception.DeckRenameException;
 import com.ichi2.libanki.exception.NoSuchDeckException;
 
 import com.ichi2.utils.DeckComparator;
@@ -44,7 +44,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
@@ -75,7 +74,7 @@ public class Decks {
                 + "'conf': 1,"
                 + "'usn': 0,"
                 + "'desc': \"\","
-                + "'dyn': 0," // anki uses int/bool interchangably here
+                + "'dyn': 0," // lowanki uses int/bool interchangably here
                 + "'collapsed': False,"
                 // added in beta11
                 + "'extendNew': 10,"
@@ -170,7 +169,7 @@ public class Decks {
             }
             String foundName = deck.getString("name");
             if (!equalName(name, foundName)) {
-                AnkiDroidApp.sendExceptionReport("We looked for deck \"" + name + "\" and instead got deck \"" + foundName + "\".", "Decks - byName");
+                LowkeyAnkiDroidApp.sendExceptionReport("We looked for deck \"" + name + "\" and instead got deck \"" + foundName + "\".", "Decks - byName");
             }
             return deck;
         }
@@ -537,7 +536,7 @@ public class Decks {
             }
             /* else: We are renaming the deck to the "same"
              * name. I.e. case may varie, normalization may be
-             * different, but anki essentially consider that the name
+             * different, but lowanki essentially consider that the name
              * did not change. We still need to run the remaining of
              * the code in order do this change. */
         }
@@ -874,7 +873,7 @@ public class Decks {
         for (Deck deck: decks) {
             String deckName = deck.getString("name");
 
-            /* With 2.1.28, anki started strips whitespace of deck name.  This method paragraph is here for
+            /* With 2.1.28, lowanki started strips whitespace of deck name.  This method paragraph is here for
               compatibility while we wait for rust.  It should be executed before other changes, because both "FOO "
               and "FOO" will be renamed to the same name, and so this will need to be renamed again in case of
               duplicate.*/

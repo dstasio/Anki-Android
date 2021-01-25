@@ -23,9 +23,9 @@ package com.ichi2.libanki.sync;
 import android.content.SharedPreferences;
 import android.net.Uri;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.exception.UnknownHttpResponseException;
-import com.ichi2.anki.web.CustomSyncServer;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.exception.UnknownHttpResponseException;
+import com.ichi2.lowanki.web.CustomSyncServer;
 import com.ichi2.async.Connection;
 import com.ichi2.libanki.Consts;
 import com.ichi2.libanki.Utils;
@@ -187,7 +187,7 @@ public class HttpSyncer {
                 buf.write(String.format(Locale.US, "Content-Disposition: form-data; name=\"%s\"\r\n\r\n%s\r\n", entry.getKey(),
                         entry.getValue()));
             }
-            tmpFileBuffer = File.createTempFile("syncer", ".tmp", new File(AnkiDroidApp.getCacheStorageDirectory()));
+            tmpFileBuffer = File.createTempFile("syncer", ".tmp", new File(LowkeyAnkiDroidApp.getCacheStorageDirectory()));
             FileOutputStream fos = new FileOutputStream(tmpFileBuffer);
             BufferedOutputStream bos = new BufferedOutputStream(fos);
             GZIPOutputStream tgt;
@@ -269,7 +269,7 @@ public class HttpSyncer {
         try {
             return HttpUrl.get(url);
         } catch (IllegalArgumentException ex) {
-            if (isUsingCustomSyncServer(AnkiDroidApp.getSharedPrefs(AnkiDroidApp.getInstance()))) {
+            if (isUsingCustomSyncServer(LowkeyAnkiDroidApp.getSharedPrefs(LowkeyAnkiDroidApp.getInstance()))) {
                 throw new CustomSyncServerUrlException(url, ex);
             } else {
                 throw ex;
@@ -468,7 +468,7 @@ public class HttpSyncer {
 
     public String syncURL() {
         // Allow user to specify custom sync server
-        SharedPreferences userPreferences = AnkiDroidApp.getSharedPrefs(AnkiDroidApp.getInstance());
+        SharedPreferences userPreferences = LowkeyAnkiDroidApp.getSharedPrefs(LowkeyAnkiDroidApp.getInstance());
         if (isUsingCustomSyncServer(userPreferences)) {
             String syncBaseString = CustomSyncServer.getSyncBaseUrl(userPreferences);
             if (syncBaseString == null) {

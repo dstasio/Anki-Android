@@ -3,7 +3,7 @@ package com.ichi2.libanki.importer;
 import android.os.Build;
 import android.text.TextUtils;
 
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.R;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.importer.python.CsvDialect;
 import com.ichi2.libanki.importer.python.CsvReader;

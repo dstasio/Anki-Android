@@ -7,7 +7,7 @@ import android.util.Pair;
 import android.widget.Toast;
 
 
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.R;
 import com.ichi2.async.CancelListener;
 import com.ichi2.libanki.Card;
 import com.ichi2.libanki.Consts;
@@ -22,8 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import timber.log.Timber;
-
-import androidx.annotation.NonNull;
 
 /**
  * In this documentation, I will call "normal use" the fact that between two successive calls to `getCard`, either the
@@ -389,7 +387,7 @@ public abstract class AbstractSched {
     public abstract int getToday();
 
     /**
-     * @return Timestamp of when the day ends. Takes into account hour at which day change for anki and timezone
+     * @return Timestamp of when the day ends. Takes into account hour at which day change for lowanki and timezone
      */
     public abstract long getDayCutoff();
 

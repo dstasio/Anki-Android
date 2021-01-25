@@ -25,10 +25,10 @@ import timber.log.Timber;
 
 import android.view.View;
 
-import com.ichi2.anki.AbstractFlashcardViewer;
-import com.ichi2.anki.AnkiActivity;
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.AbstractFlashcardViewer;
+import com.ichi2.lowanki.AnkiActivity;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
 import com.ichi2.themes.Themes;
 
 /** Implementation of {@link Compat} for SDK level 19 */
@@ -50,7 +50,7 @@ public class CompatV19 extends CompatV18 implements Compat {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE
         );
         // Show / hide the Action bar together with the status bar
-        SharedPreferences prefs = AnkiDroidApp.getSharedPrefs(a);
+        SharedPreferences prefs = LowkeyAnkiDroidApp.getSharedPrefs(a);
         final int fullscreenMode = Integer.parseInt(prefs.getString("fullscreenMode", "0"));
         CompatHelper.getCompat().setStatusBarColor(a.getWindow(), Themes.getColorFromAttr(a, R.attr.colorPrimaryDark));
         View decorView = a.getWindow().getDecorView();

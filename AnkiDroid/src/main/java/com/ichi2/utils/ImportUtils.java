@@ -12,10 +12,10 @@ import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.ichi2.anki.AnkiActivity;
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
-import com.ichi2.anki.dialogs.DialogHandler;
+import com.ichi2.lowanki.AnkiActivity;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.dialogs.DialogHandler;
 import com.ichi2.compat.CompatHelper;
 
 import org.apache.commons.compress.archivers.zip.ZipFile;
@@ -98,7 +98,7 @@ public class ImportUtils {
             try {
                 return handleFileImportInternal(context, intent);
             } catch (Exception e) {
-                AnkiDroidApp.sendExceptionReport(e, "handleFileImport");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "handleFileImport");
                 Timber.e(e, "failed to handle import intent");
                 return ImportResult.fromErrorString(context.getString(R.string.import_error_exception, e.getLocalizedMessage()));
             }
@@ -154,8 +154,8 @@ public class ImportUtils {
                     Timber.w("Could not retrieve filename from ContentProvider, but was valid zip file so we try to continue");
                 } else {
                     Timber.e("Could not retrieve filename from ContentProvider or read content as ZipFile");
-                    AnkiDroidApp.sendExceptionReport(new RuntimeException("Could not import apkg from ContentProvider"), "IntentHandler.java", "apkg import failed");
-                    return ImportResult.fromErrorString(AnkiDroidApp.getAppResources().getString(R.string.import_error_content_provider, AnkiDroidApp.getManualUrl() + "#importing"));
+                    LowkeyAnkiDroidApp.sendExceptionReport(new RuntimeException("Could not import apkg from ContentProvider"), "IntentHandler.java", "apkg import failed");
+                    return ImportResult.fromErrorString(LowkeyAnkiDroidApp.getAppResources().getString(R.string.import_error_content_provider, LowkeyAnkiDroidApp.getManualUrl() + "#importing"));
                 }
             }
 
@@ -175,7 +175,7 @@ public class ImportUtils {
                 String errorMessage = copyFileToCache(context, data, tempOutDir) ? null : context.getString(R.string.import_error_copy_file_to_cache);
                 // Show import dialog
                 if (errorMessage != null) {
-                    AnkiDroidApp.sendExceptionReport(new RuntimeException("Error importing apkg file"), "IntentHandler.java", "apkg import failed");
+                    LowkeyAnkiDroidApp.sendExceptionReport(new RuntimeException("Error importing apkg file"), "IntentHandler.java", "apkg import failed");
                     return ImportResult.fromErrorString(errorMessage);
                 }
 
@@ -433,7 +433,7 @@ public class ImportUtils {
             }
 
             // If we don't have a good string, send a silent exception that we can better handle this in the future
-            AnkiDroidApp.sendExceptionReport(e, "Import - invalid zip", "improve UI message here", true);
+            LowkeyAnkiDroidApp.sendExceptionReport(e, "Import - invalid zip", "improve UI message here", true);
             return ctx.getString(R.string.import_log_failed_unzip, e.getLocalizedMessage());
         }
 

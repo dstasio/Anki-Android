@@ -19,7 +19,7 @@ public class WebViewDebugging {
         // Beware: Crash in AnkiDroidApp.onCreate() with:
         /*
         java.lang.RuntimeException: Using WebView from more than one process at once with the same data directory
-        is not supported. https://crbug.com/558377 : Lock owner com.ichi2.anki:acra at
+        is not supported. https://crbug.com/558377 : Lock owner com.ichi2.lowanki:acra at
         org.chromium.android_webview.AwDataDirLock.a(PG:26)
          */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

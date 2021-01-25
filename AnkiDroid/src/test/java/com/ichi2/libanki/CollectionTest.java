@@ -1,6 +1,6 @@
 package com.ichi2.libanki;
 
-import com.ichi2.anki.RobolectricTest;
+import com.ichi2.lowanki.RobolectricTest;
 import com.ichi2.utils.JSONObject;
 
 import org.junit.Ignore;
@@ -196,7 +196,7 @@ public class CollectionTest extends RobolectricTest {
         n.setItem("Front", "foo[sound:abc.mp3]");
         n.flush();
         String question = c.q(true);
-        assertThat("Question «" + question + "» does not contains «anki:play».", question, containsString("anki:play"));
+        assertThat("Question «" + question + "» does not contains «lowanki:play».", question, containsString("lowanki:play"));
         // it shouldn't throw an error while people are editing
         m.getJSONArray("tmpls").getJSONObject(0).put("qfmt", "{{kana:}}");
         mm.save(m);

@@ -22,7 +22,7 @@
 
 <!-- Advanced Preferences -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://arbitrary.app.namespace/com.ichi2.anki"
+    xmlns:app="http://arbitrary.app.namespace/com.ichi2.lowanki"
     android:title="@string/pref_cat_advanced"
     android:summary="@string/pref_cat_advanced_summ"
     android:key="pref_screen_advanced">
@@ -153,7 +153,7 @@
         android:key="about_dialog_preference"
         android:title="@string/about_title">
         <intent
-            android:targetPackage="com.ichi2.anki"
-            android:targetClass="com.ichi2.anki.Info"/>
+            android:targetPackage="com.ichi2.lowanki"
+            android:targetClass="com.ichi2.lowanki.Info"/>
     </Preference>
 </PreferenceScreen>

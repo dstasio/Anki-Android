@@ -29,7 +29,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ichi2.anki.AnkiDroidApp;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 
 /**
  * A {@link android.preference.PreferenceActivity} which implements and proxies the necessary calls
@@ -52,7 +52,7 @@ public abstract class AppCompatPreferenceActivity extends android.preference.Pre
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(AnkiDroidApp.updateContextWithLanguage(base));
+        super.attachBaseContext(LowkeyAnkiDroidApp.updateContextWithLanguage(base));
     }
 
     @Override

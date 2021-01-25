@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
-import com.ichi2.anki.AnkiDroidApp;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 import com.ichi2.compat.Compat;
 import com.ichi2.compat.CompatHelper;
 
@@ -21,8 +21,8 @@ public class VersionUtils {
      * Get package name as defined in the manifest.
      */
     public static String getAppName() {
-        String pkgName = AnkiDroidApp.TAG;
-        Context context = AnkiDroidApp.getInstance();
+        String pkgName = LowkeyAnkiDroidApp.TAG;
+        Context context = LowkeyAnkiDroidApp.getInstance();
 
         try {
             PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -40,7 +40,7 @@ public class VersionUtils {
      */
     public static String getPkgVersionName() {
         String pkgVersion = "?";
-        Context context = AnkiDroidApp.getInstance();
+        Context context = LowkeyAnkiDroidApp.getInstance();
         if (context != null) {
             try {
                 PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -57,7 +57,7 @@ public class VersionUtils {
      * Get the package versionCode as defined in the manifest.
      */
     public static long getPkgVersionCode() {
-        Context context = AnkiDroidApp.getInstance();
+        Context context = LowkeyAnkiDroidApp.getInstance();
         try {
             PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             long versionCode = compat.getVersionCode(pInfo);
@@ -71,7 +71,7 @@ public class VersionUtils {
             } else if (context.getPackageName() == null) {
                 Timber.e("getPkgVersionCode() null package name?");
             }
-            AnkiDroidApp.sendExceptionReport(npe, "Unexpected exception getting version code?");
+            LowkeyAnkiDroidApp.sendExceptionReport(npe, "Unexpected exception getting version code?");
             Timber.e(npe, "Unexpected exception getting version code?");
         }
         return 0;

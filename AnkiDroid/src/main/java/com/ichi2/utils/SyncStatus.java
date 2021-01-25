@@ -18,7 +18,7 @@ package com.ichi2.utils;
 
 import android.content.SharedPreferences;
 
-import com.ichi2.anki.AnkiDroidApp;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 import com.ichi2.libanki.Collection;
 import com.ichi2.utils.FunctionalInterfaces.Supplier;
 
@@ -72,13 +72,13 @@ public enum SyncStatus {
 
 
     private static boolean isDisabled() {
-        SharedPreferences preferences = AnkiDroidApp.getSharedPrefs(AnkiDroidApp.getInstance());
+        SharedPreferences preferences = LowkeyAnkiDroidApp.getSharedPrefs(LowkeyAnkiDroidApp.getInstance());
         return !preferences.getBoolean("showSyncStatusBadge", true);
     }
 
 
     private static boolean isLoggedIn() {
-        SharedPreferences preferences = AnkiDroidApp.getSharedPrefs(AnkiDroidApp.getInstance());
+        SharedPreferences preferences = LowkeyAnkiDroidApp.getSharedPrefs(LowkeyAnkiDroidApp.getInstance());
         String hkey = preferences.getString("hkey", "");
         return hkey != null && hkey.length() != 0;
     }
@@ -86,7 +86,7 @@ public enum SyncStatus {
 
     /** Whether data has been changed - to be converted to Rust */
     public static boolean hasDatabaseChanges() {
-        return AnkiDroidApp.getSharedPrefs(AnkiDroidApp.getInstance()).getBoolean("changesSinceLastSync", false);
+        return LowkeyAnkiDroidApp.getSharedPrefs(LowkeyAnkiDroidApp.getInstance()).getBoolean("changesSinceLastSync", false);
     }
 
     /** To be converted to Rust */
@@ -95,14 +95,14 @@ public enum SyncStatus {
             return;
         }
         sMarkedInMemory = true;
-        AnkiDroidApp.getSharedPrefs(AnkiDroidApp.getInstance()).edit().putBoolean("changesSinceLastSync", true).apply();
+        LowkeyAnkiDroidApp.getSharedPrefs(LowkeyAnkiDroidApp.getInstance()).edit().putBoolean("changesSinceLastSync", true).apply();
     }
 
 
     /** To be converted to Rust */
     public static void markSyncCompleted() {
         sMarkedInMemory = false;
-        AnkiDroidApp.getSharedPrefs(AnkiDroidApp.getInstance()).edit().putBoolean("changesSinceLastSync", false).apply();
+        LowkeyAnkiDroidApp.getSharedPrefs(LowkeyAnkiDroidApp.getInstance()).edit().putBoolean("changesSinceLastSync", false).apply();
     }
 
 

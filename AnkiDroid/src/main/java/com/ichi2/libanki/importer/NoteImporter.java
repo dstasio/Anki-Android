@@ -4,8 +4,8 @@ import android.database.Cursor;
 import android.text.TextUtils;
 import android.util.Pair;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.Consts;
 import com.ichi2.libanki.DeckConfig;
@@ -30,7 +30,6 @@ import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 
 import static com.ichi2.libanki.Consts.NEW_CARDS_RANDOM;
-import static com.ichi2.libanki.Utils.collection2Array;
 import static com.ichi2.libanki.Utils.fieldChecksum;
 import static com.ichi2.libanki.Utils.guid64;
 import static com.ichi2.libanki.Utils.joinFields;
@@ -414,19 +413,19 @@ public class NoteImporter extends Importer {
 
 
     private String getQuantityString(@PluralsRes int res, int quantity) {
-        return AnkiDroidApp.getAppResources().getQuantityString(res, quantity, quantity);
+        return LowkeyAnkiDroidApp.getAppResources().getQuantityString(res, quantity, quantity);
     }
 
 
     @NonNull
     protected String getString(@StringRes int res) {
-        return AnkiDroidApp.getAppResources().getString(res);
+        return LowkeyAnkiDroidApp.getAppResources().getString(res);
     }
 
 
     @NonNull
     protected String getString(int res, @NonNull Object... formatArgs) {
-        return AnkiDroidApp.getAppResources().getString(res, formatArgs);
+        return LowkeyAnkiDroidApp.getAppResources().getString(res, formatArgs);
     }
 
 

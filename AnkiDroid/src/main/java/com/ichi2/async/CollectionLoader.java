@@ -4,8 +4,8 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import android.os.AsyncTask;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.CollectionHelper;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.CollectionHelper;
 import com.ichi2.libanki.Collection;
 
 import timber.log.Timber;
@@ -38,12 +38,12 @@ public final class CollectionLoader extends AsyncTask<Void, Void, Collection> {
         // load collection
         try {
             Timber.d("CollectionLoader accessing collection");
-            Collection col = CollectionHelper.getInstance().getCol(AnkiDroidApp.getInstance().getApplicationContext());
+            Collection col = CollectionHelper.getInstance().getCol(LowkeyAnkiDroidApp.getInstance().getApplicationContext());
             Timber.i("CollectionLoader obtained collection");
             return col;
         } catch (RuntimeException e) {
             Timber.e(e, "loadInBackground - RuntimeException on opening collection");
-            AnkiDroidApp.sendExceptionReport(e, "CollectionLoader.loadInBackground");
+            LowkeyAnkiDroidApp.sendExceptionReport(e, "CollectionLoader.loadInBackground");
             return null;
         }
     }

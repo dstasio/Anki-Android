@@ -19,9 +19,9 @@ package com.ichi2.libanki;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.R;
-import com.ichi2.anki.exception.ImportExportException;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.exception.ImportExportException;
 import com.ichi2.utils.JSONArray;
 import com.ichi2.utils.JSONException;
 import com.ichi2.utils.JSONObject;
@@ -381,7 +381,7 @@ public final class AnkiPackageExporter extends AnkiExporter {
         int c = 0;
         JSONObject media = new JSONObject();
         for (File file : files) {
-            // todo: deflate SVG files, as in dae/anki@a5b0852360b132c0d04094f5ca8f1933f64d7c7e
+            // todo: deflate SVG files, as in dae/lowanki@a5b0852360b132c0d04094f5ca8f1933f64d7c7e
             if (validateFiles == ValidateFiles.VALIDATE && !file.exists()) {
                 // Anki 2.1.30 does the same
                 Timber.d("Skipping missing file %s", file);

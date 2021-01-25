@@ -18,7 +18,7 @@ package com.ichi2.libanki.sync;
 
 import android.content.SharedPreferences;
 
-import com.ichi2.anki.AnkiDroidApp;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -122,13 +122,13 @@ public class HttpSyncerTest {
     }
 
     private void setCustomServerWithNoUrl() {
-        SharedPreferences userPreferences = AnkiDroidApp.getSharedPrefs(AnkiDroidApp.getInstance());
+        SharedPreferences userPreferences = LowkeyAnkiDroidApp.getSharedPrefs(LowkeyAnkiDroidApp.getInstance());
         userPreferences.edit().putBoolean("useCustomSyncServer", true).apply();
     }
 
     private void setCustomServer(String s) {
 
-        SharedPreferences userPreferences = AnkiDroidApp.getSharedPrefs(AnkiDroidApp.getInstance());
+        SharedPreferences userPreferences = LowkeyAnkiDroidApp.getSharedPrefs(LowkeyAnkiDroidApp.getInstance());
         SharedPreferences.Editor e = userPreferences.edit();
         e.putBoolean("useCustomSyncServer", true);
         e.putString("syncBaseUrl", s);

@@ -32,7 +32,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

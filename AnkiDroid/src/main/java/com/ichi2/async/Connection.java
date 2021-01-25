@@ -24,11 +24,11 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.PowerManager;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.R;
-import com.ichi2.anki.exception.MediaSyncException;
-import com.ichi2.anki.exception.UnknownHttpResponseException;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.exception.MediaSyncException;
+import com.ichi2.lowanki.exception.UnknownHttpResponseException;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.sync.FullSyncer;
 import com.ichi2.libanki.sync.HostNum;
@@ -45,12 +45,10 @@ import com.ichi2.utils.JSONObject;
 import java.io.IOException;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import okhttp3.Response;
 import timber.log.Timber;
 
 import static com.ichi2.async.Connection.ConflictResolution.FULL_DOWNLOAD;
-import static com.ichi2.async.Connection.ConflictResolution.FULL_UPLOAD;
 
 public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connection.Payload> {
 
@@ -80,10 +78,10 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
     public Connection() {
         sIsCancelled = false;
         sIsCancellable = false;
-        Context context = AnkiDroidApp.getInstance().getApplicationContext();
+        Context context = LowkeyAnkiDroidApp.getInstance().getApplicationContext();
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                AnkiDroidApp.getAppResources().getString(R.string.app_name) + ":Connection");
+                LowkeyAnkiDroidApp.getAppResources().getString(R.string.app_name) + ":Connection");
     }
 
     private static Connection launchConnectionTask(TaskListener listener, Payload data) {
@@ -143,7 +141,7 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
     protected void onPreExecute() {
         super.onPreExecute();
         // Acquire the wake lock before syncing to ensure CPU remains on until the sync completes.
-        if (Permissions.canUseWakeLock(AnkiDroidApp.getInstance().getApplicationContext())) {
+        if (Permissions.canUseWakeLock(LowkeyAnkiDroidApp.getInstance().getApplicationContext())) {
             mWakeLock.acquire();
         }
         if (mListener != null) {
@@ -231,7 +229,7 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
         } catch (Exception e2) {
             // Ask user to report all bugs which aren't timeout errors
             if (!timeoutOccurred(e2)) {
-                AnkiDroidApp.sendExceptionReport(e2, "doInBackgroundLogin");
+                LowkeyAnkiDroidApp.sendExceptionReport(e2, "doInBackgroundLogin");
             }
             data.success = false;
             data.result = new Object[] {"connectionError", e2};
@@ -319,7 +317,7 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
         // A number AnkiWeb told us to send back. Probably to choose the best server for the user
         HostNum hostNum = (HostNum) data.data[3];
         // Use safe version that catches exceptions so that full sync is still possible
-        Collection col = CollectionHelper.getInstance().getColSafe(AnkiDroidApp.getInstance());
+        Collection col = CollectionHelper.getInstance().getColSafe(LowkeyAnkiDroidApp.getInstance());
 
         boolean colCorruptFullSync = false;
         if (!CollectionHelper.getInstance().colIsOpen() || !ok) {
@@ -415,7 +413,7 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
                     default:
                     }
                 } catch (OutOfMemoryError e) {
-                    AnkiDroidApp.sendExceptionReport(e, "doInBackgroundSync-fullSync");
+                    LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundSync-fullSync");
                     data.success = false;
                     data.result = new Object[] { "OutOfMemoryError" };
                     return data;
@@ -425,7 +423,7 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
                     } else if ("UserAbortedSync".equals(e.getMessage())) {
                         data.result = new Object[] {"UserAbortedSync", e};
                     } else {
-                        AnkiDroidApp.sendExceptionReport(e, "doInBackgroundSync-fullSync");
+                        LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundSync-fullSync");
                         data.result = new Object[] {"IOException", e};
                     }
                     data.success = false;
@@ -449,10 +447,10 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
                     Timber.i("Sync - Performing media sync");
                     ret = mediaClient.sync();
                     if (ret == null) {
-                        mediaError = AnkiDroidApp.getAppResources().getString(R.string.sync_media_error);
+                        mediaError = LowkeyAnkiDroidApp.getAppResources().getString(R.string.sync_media_error);
                     } else {
                         if ("corruptMediaDB".equals(ret)) {
-                            mediaError = AnkiDroidApp.getAppResources().getString(R.string.sync_media_db_error);
+                            mediaError = LowkeyAnkiDroidApp.getAppResources().getString(R.string.sync_media_db_error);
                             noMediaChanges = true;
                         }
                         if ("noChanges".equals(ret)) {
@@ -460,7 +458,7 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
                             noMediaChanges = true;
                         }
                         if ("sanityFailed".equals(ret)) {
-                            mediaError = AnkiDroidApp.getAppResources().getString(R.string.sync_media_sanity_failed);
+                            mediaError = LowkeyAnkiDroidApp.getAppResources().getString(R.string.sync_media_sanity_failed);
                         } else {
                             publishProgress(R.string.sync_media_success);
                         }
@@ -471,7 +469,7 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
                     } else if ("UserAbortedSync".equals(e.getMessage())) {
                         data.result = new Object[] {"UserAbortedSync", e};
                     }
-                    mediaError = AnkiDroidApp.getAppResources().getString(R.string.sync_media_error) + "\n\n" + e.getLocalizedMessage();
+                    mediaError = LowkeyAnkiDroidApp.getAppResources().getString(R.string.sync_media_error) + "\n\n" + e.getLocalizedMessage();
                 }
             }
             if (noChanges && (!media || noMediaChanges)) {
@@ -487,7 +485,7 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
             Timber.e("Media sync rejected by server");
             data.success = false;
             data.result = new Object[] {"mediaSyncServerError", e};
-            AnkiDroidApp.sendExceptionReport(e, "doInBackgroundSync");
+            LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundSync");
             return data;
         } catch (UnknownHttpResponseException e) {
             Timber.e(e, "doInBackgroundSync -- unknown response code error");
@@ -506,7 +504,7 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
             } else if ("UserAbortedSync".equals(e.getMessage())) {
                 data.result = new Object[] {"UserAbortedSync", e};
             } else {
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundSync");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundSync");
                 data.result = new Object[] {e.getLocalizedMessage(), e};
             }
             return data;
@@ -540,7 +538,7 @@ public class Connection extends BaseAsyncTask<Connection.Payload, Object, Connec
         if (sAllowSyncOnNoConnection) {
             return true;
         }
-        ConnectivityManager cm = (ConnectivityManager) AnkiDroidApp.getInstance().getApplicationContext()
+        ConnectivityManager cm = (ConnectivityManager) LowkeyAnkiDroidApp.getInstance().getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm != null) {
             android.net.NetworkInfo netInfo = cm.getActiveNetworkInfo();

@@ -1,6 +1,6 @@
 package com.ichi2.libanki;
 
-import com.ichi2.anki.RobolectricTest;
+import com.ichi2.lowanki.RobolectricTest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +21,7 @@ public class MediaTest extends RobolectricTest {
        @Test
        public void test_add(){
        Collection col = getCol();
-       String dir = tempfile.mkdtemp(prefix="anki");
+       String dir = tempfile.mkdtemp(prefix="lowanki");
        String path = os.path.join(dir, "foo.jpg");
        with open(path, "w") as note:
        note.write("hello");

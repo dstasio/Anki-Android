@@ -16,8 +16,8 @@
 
 package com.ichi2.libanki.sched;
 
-import com.ichi2.anki.RobolectricTest;
-import com.ichi2.anki.exception.ConfirmModSchemaException;
+import com.ichi2.lowanki.RobolectricTest;
+import com.ichi2.lowanki.exception.ConfirmModSchemaException;
 import com.ichi2.libanki.Card;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.Consts;
@@ -31,7 +31,6 @@ import com.ichi2.testutils.AnkiAssert;
 import com.ichi2.utils.JSONArray;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.ParameterizedRobolectricTestRunner;
@@ -40,7 +39,7 @@ import org.robolectric.ParameterizedRobolectricTestRunner.Parameters;
 
 import java.util.Arrays;
 
-import static com.ichi2.anki.AbstractFlashcardViewer.EASE_3;
+import static com.ichi2.lowanki.AbstractFlashcardViewer.EASE_3;
 import static com.ichi2.async.CollectionTask.TASK_TYPE.UNDO;
 import static com.ichi2.async.CollectionTask.nonTaskUndo;
 import static com.ichi2.testutils.AnkiAssert.assertDoesNotThrow;

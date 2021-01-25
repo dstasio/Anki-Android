@@ -21,9 +21,9 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
-import com.ichi2.anki.UIUtils;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.UIUtils;
 
 import com.ichi2.utils.JSONArray;
 import com.ichi2.utils.JSONException;
@@ -160,6 +160,6 @@ public class StepsPreference extends android.preference.EditTextPreference {
         if (attrs == null) {
             return true;
         }
-        return attrs.getAttributeBooleanValue(AnkiDroidApp.XML_CUSTOM_NAMESPACE, "allowEmpty", true);
+        return attrs.getAttributeBooleanValue(LowkeyAnkiDroidApp.XML_CUSTOM_NAMESPACE, "allowEmpty", true);
     }
 }

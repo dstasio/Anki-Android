@@ -20,7 +20,7 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.ichi2.anki"
+          package="com.ichi2.lowanki"
           android:installLocation="auto"
           >
     <uses-feature android:name="android.hardware.camera" android:required="false" />
@@ -38,7 +38,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" tools:node="replace"/>
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <permission android:name="com.ichi2.anki.permission.READ_WRITE_DATABASE"
+    <permission android:name="com.ichi2.lowanki.permission.READ_WRITE_DATABASE"
                 android:label="@string/read_write_permission_label"
                 android:description="@string/read_write_permission_description"
                 android:protectionLevel="dangerous"
@@ -56,7 +56,7 @@
         />
 
     <application
-        android:name="com.ichi2.anki.AnkiDroidApp"
+        android:name="com.ichi2.lowanki.LowkeyAnkiDroidApp"
         android:label="@string/app_name"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -70,7 +70,7 @@
         android:resizeableActivity="true"
         >
         <activity
-            android:name="com.ichi2.anki.IntentHandler"
+            android:name="com.ichi2.lowanki.IntentHandler"
             android:label="@string/app_name"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -153,38 +153,38 @@
 
             <!-- Tasker DO_SYNC intent -->
             <intent-filter>
-                <action android:name="com.ichi2.anki.DO_SYNC" />
+                <action android:name="com.ichi2.lowanki.DO_SYNC" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ichi2.anki.DeckPicker"
+            android:name="com.ichi2.lowanki.DeckPicker"
             android:label="@string/app_name"
             android:theme="@style/Theme_Dark_Compat.Launcher"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             />
         <activity
-            android:name="com.ichi2.anki.StudyOptionsActivity"
+            android:name="com.ichi2.lowanki.StudyOptionsActivity"
             android:label="StudyOptions"
             android:exported="false"
             android:configChanges="keyboardHidden|locale|orientation|screenSize"
-            android:parentActivityName=".DeckPicker"
+            android:parentActivityName="com.ichi2.lowanki.DeckPicker"
             >
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ichi2.anki.DeckPicker"
+                android:value="com.ichi2.lowanki.DeckPicker"
                 />
         </activity>
 
         <!-- Context menu item name is the label, context is the system language -->
         <!-- Note: This appears to require that the target label is variable -->
         <activity-alias
-            android:name="com.ichi2.anki.CardBrowserContextMenuAction"
+            android:name="com.ichi2.lowanki.CardBrowserContextMenuAction"
             android:label="@string/card_browser_context_menu"
             android:enabled="false"
-            android:targetActivity="com.ichi2.anki.CardBrowser">
+            android:targetActivity="com.ichi2.lowanki.CardBrowser">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -192,39 +192,39 @@
             </intent-filter>
         </activity-alias>
         <activity
-            android:name="com.ichi2.anki.CardBrowser"
+            android:name="com.ichi2.lowanki.CardBrowser"
             android:label="@string/card_browser"
             android:exported="true"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
-            android:parentActivityName=".DeckPicker"
+            android:parentActivityName="com.ichi2.lowanki.DeckPicker"
             >
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ichi2.anki.DeckPicker"
+                android:value="com.ichi2.lowanki.DeckPicker"
                 />
         </activity>
         <activity
-            android:name=".ModelBrowser"
+            android:name="com.ichi2.lowanki.ModelBrowser"
             android:label="@string/model_browser_label"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             />
         <activity
-            android:name=".ModelFieldEditor"
+            android:name="com.ichi2.lowanki.ModelFieldEditor"
             android:label="@string/model_editor_label"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             />
         <activity
-            android:name="com.ichi2.anki.Reviewer"
+            android:name="com.ichi2.lowanki.Reviewer"
             android:exported="true"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             android:windowSoftInputMode="adjustResize"
-            android:parentActivityName=".DeckPicker">
+            android:parentActivityName="com.ichi2.lowanki.DeckPicker">
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ichi2.anki.DeckPicker"
+                android:value="com.ichi2.lowanki.DeckPicker"
                 />
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -232,19 +232,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ichi2.anki.VideoPlayer"
+            android:name="com.ichi2.lowanki.VideoPlayer"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             />
         <activity
-            android:name="com.ichi2.anki.MyAccount"
+            android:name="com.ichi2.lowanki.MyAccount"
             android:label="@string/menu_my_account"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             />
         <activity
-            android:name="com.ichi2.anki.Preferences"
+            android:name="com.ichi2.lowanki.Preferences"
             android:label="@string/preferences_title"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
@@ -255,31 +255,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ichi2.anki.DeckOptions"
+            android:name="com.ichi2.lowanki.DeckOptions"
             android:label="@string/deckpreferences_title"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             android:theme="@style/LegacyActionBarLight"
             />
         <activity
-            android:name=".FilteredDeckOptions"
+            android:name="com.ichi2.lowanki.FilteredDeckOptions"
             android:label="@string/deckpreferences_title"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             android:theme="@style/LegacyActionBarLight"
             />
         <activity
-            android:name="com.ichi2.anki.Info"
+            android:name="com.ichi2.lowanki.Info"
             android:label="@string/about_title"
             android:exported="false"
             android:configChanges="locale"
             />
 
         <activity-alias
-            android:name="com.ichi2.anki.AnkiCardContextMenuAction"
+            android:name="com.ichi2.lowanki.AnkiCardContextMenuAction"
             android:label="@string/context_menu_anki_card_label"
             android:enabled="true"
-            android:targetActivity=".NoteEditor">
+            android:targetActivity="com.ichi2.lowanki.NoteEditor">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -287,7 +287,7 @@
             </intent-filter>
         </activity-alias>
         <activity
-            android:name="com.ichi2.anki.NoteEditor"
+            android:name="com.ichi2.lowanki.NoteEditor"
             android:label="@string/fact_adder_intent_title"
             android:exported="true"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
@@ -303,7 +303,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ichi2.anki.analytics.AnkiDroidCrashReportDialog"
+            android:name="com.ichi2.lowanki.analytics.AnkiDroidCrashReportDialog"
             android:theme="@style/Theme.CrashReportDialog"
             android:process=":acra"
             android:launchMode="singleInstance"
@@ -311,25 +311,25 @@
             android:finishOnTaskLaunch="true"
             />
         <activity
-            android:name="com.ichi2.anki.Statistics"
+            android:name="com.ichi2.lowanki.Statistics"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
-            android:parentActivityName=".DeckPicker"
+            android:parentActivityName="com.ichi2.lowanki.DeckPicker"
             >
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ichi2.anki.DeckPicker"
+                android:value="com.ichi2.lowanki.DeckPicker"
                 />
         </activity>
         <activity
-            android:name="com.ichi2.anki.Previewer"
+            android:name="com.ichi2.lowanki.Previewer"
             android:label="@string/preview_title"
             android:exported="false"
             android:configChanges="locale"
             />
         <activity
-            android:name="com.ichi2.anki.CardTemplatePreviewer"
+            android:name="com.ichi2.lowanki.CardTemplatePreviewer"
             android:label="@string/preview_title"
             android:exported="false"
             android:configChanges="locale"
@@ -368,7 +368,7 @@
         <service android:name="com.ichi2.widget.AnkiDroidWidgetSmall$UpdateService" />
 
         <receiver
-            android:name="com.ichi2.anki.receiver.SdCardReceiver"
+            android:name="com.ichi2.lowanki.receiver.SdCardReceiver"
             android:enabled="true"
             android:exported="true"
             >
@@ -384,17 +384,17 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".services.NotificationService"
+        <receiver android:name="com.ichi2.lowanki.services.NotificationService"
             android:enabled="true"
             android:exported="false"
             />
         <receiver
-            android:name=".services.ReminderService"
+            android:name="com.ichi2.lowanki.services.ReminderService"
             android:enabled="true"
             android:exported="false"
             />
         <receiver
-            android:name=".services.BootService"
+            android:name="com.ichi2.lowanki.services.BootService"
             android:enabled="true"
             android:exported="false"
             >
@@ -404,28 +404,28 @@
         </receiver>
 
         <activity
-            android:name=".multimediacard.activity.MultimediaEditFieldActivity"
+            android:name="com.ichi2.lowanki.multimediacard.activity.MultimediaEditFieldActivity"
             android:label="@string/title_activity_edit_text"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             >
         </activity>
         <activity
-            android:name="com.ichi2.anki.multimediacard.activity.TranslationActivity"
+            android:name="com.ichi2.lowanki.multimediacard.activity.TranslationActivity"
             android:label="@string/title_activity_translation"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             >
         </activity>
         <activity
-            android:name="com.ichi2.anki.multimediacard.activity.LoadPronounciationActivity"
+            android:name="com.ichi2.lowanki.multimediacard.activity.LoadPronounciationActivity"
             android:label="@string/multimedia_editor_text_field_editing_say"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             >
         </activity>
         <activity
-            android:name="com.ichi2.anki.CardTemplateEditor"
+            android:name="com.ichi2.lowanki.CardTemplateEditor"
             android:label="@string/title_activity_template_editor"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
@@ -433,13 +433,13 @@
             >
         </activity>
         <activity
-            android:name=".CardTemplateBrowserAppearanceEditor"
+            android:name="com.ichi2.lowanki.CardTemplateBrowserAppearanceEditor"
             android:label="@string/card_template_browser_appearance_title"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
             />
         <activity
-            android:name=".CardInfo"
+            android:name="com.ichi2.lowanki.CardInfo"
             android:label="@string/card_info_title"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|locale|screenSize"
@@ -464,17 +464,17 @@
             />
 
         <provider
-            android:name=".provider.CardContentProvider"
-            android:authorities="com.ichi2.anki.flashcards"
+            android:name="com.ichi2.lowanki.provider.CardContentProvider"
+            android:authorities="com.ichi2.lowanki.flashcards"
             android:enabled="true"
             android:exported="true"
             >
-            <meta-data android:name="com.ichi2.anki.provider.spec" android:value="2" />
+            <meta-data android:name="com.ichi2.lowanki.provider.spec" android:value="2" />
         </provider>
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.ichi2.anki.apkgfileprovider"
+            android:authorities="com.ichi2.lowanki.apkgfileprovider"
             android:grantUriPermissions="true"
             android:exported="false"
             >

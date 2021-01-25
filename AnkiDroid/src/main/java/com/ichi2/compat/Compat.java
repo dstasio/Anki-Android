@@ -26,8 +26,8 @@ import android.view.Window;
 import android.webkit.WebSettings;
 import android.widget.TimePicker;
 
-import com.ichi2.anki.AbstractFlashcardViewer;
-import com.ichi2.anki.AnkiActivity;
+import com.ichi2.lowanki.AbstractFlashcardViewer;
+import com.ichi2.lowanki.AnkiActivity;
 
 import java.io.IOException;
 import java.io.InputStream;

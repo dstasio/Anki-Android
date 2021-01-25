@@ -8,7 +8,7 @@ import com.ichi2.libanki.Note;
 
 import java.util.List;
 
-import static com.ichi2.anki.CardBrowser.CardCache;
+import static com.ichi2.lowanki.CardBrowser.CardCache;
 
 public class TaskData {
     private Card mCard;

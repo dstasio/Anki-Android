@@ -22,11 +22,11 @@ import android.database.Cursor;
 import android.text.TextUtils;
 import android.util.Pair;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
-import com.ichi2.anki.stats.OverviewStatsBuilder;
-import com.ichi2.anki.stats.OverviewStatsBuilder.OverviewStats.AnswerButtonsOverview;
-import com.ichi2.anki.stats.StatsMetaInfo;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.stats.OverviewStatsBuilder;
+import com.ichi2.lowanki.stats.OverviewStatsBuilder.OverviewStats.AnswerButtonsOverview;
+import com.ichi2.lowanki.stats.StatsMetaInfo;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.Consts;
 import com.ichi2.libanki.Utils;
@@ -36,7 +36,6 @@ import com.ichi2.libanki.utils.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Vector;
 
@@ -111,7 +110,7 @@ public class Stats {
     public Object[] getMetaInfo() {
         String title;
         if (mWholeCollection) {
-            title = AnkiDroidApp.getInstance().getResources().getString(R.string.card_browser_all_decks);
+            title = LowkeyAnkiDroidApp.getInstance().getResources().getString(R.string.card_browser_all_decks);
         } else {
             title = mCol.getDecks().get(mDeckId).getString("name");
         }

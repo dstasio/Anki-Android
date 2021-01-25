@@ -27,11 +27,11 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Pair;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
-import com.ichi2.anki.UIUtils;
-import com.ichi2.anki.analytics.UsageAnalytics;
-import com.ichi2.anki.exception.ConfirmModSchemaException;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.UIUtils;
+import com.ichi2.lowanki.analytics.UsageAnalytics;
+import com.ichi2.lowanki.exception.ConfirmModSchemaException;
 import com.ichi2.async.CancelListener;
 import com.ichi2.async.CollectionTask;
 import com.ichi2.async.ProgressSender;
@@ -454,7 +454,7 @@ public class Collection {
                     DB.safeEndInTransaction(db);
                 }
             } catch (RuntimeException e) {
-                AnkiDroidApp.sendExceptionReport(e, "closeDB");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "closeDB");
             }
             if (!mServer) {
                 mDb.getDatabase().disableWriteAheadLogging();
@@ -1453,13 +1453,13 @@ public class Collection {
                         mDb.getDatabase().setTransactionSuccessful();
                     } catch (Exception e) {
                         Timber.e(e, "Failed to execute integrity check");
-                        AnkiDroidApp.sendExceptionReport(e, "fixIntegrity");
+                        LowkeyAnkiDroidApp.sendExceptionReport(e, "fixIntegrity");
                     } finally {
                         try {
                             mDb.getDatabase().endTransaction();
                         } catch (Exception e) {
                             Timber.e(e, "Failed to end integrity check transaction");
-                            AnkiDroidApp.sendExceptionReport(e, "fixIntegrity - endTransaction");
+                            LowkeyAnkiDroidApp.sendExceptionReport(e, "fixIntegrity - endTransaction");
                         }
                     }
                 };
@@ -1477,7 +1477,7 @@ public class Collection {
             return result.markAsLocked();
         } catch (RuntimeException e) {
             Timber.e(e, "doInBackgroundCheckDatabase - RuntimeException on marking card");
-            AnkiDroidApp.sendExceptionReport(e, "doInBackgroundCheckDatabase");
+            LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundCheckDatabase");
             return result.markAsFailed();
         } finally {
             //if the database was locked, we never got the transaction.
@@ -1514,7 +1514,7 @@ public class Collection {
             optimize(notifyProgress);
         } catch (Exception e) {
             Timber.e(e, "optimize");
-            AnkiDroidApp.sendExceptionReport(e, "fixIntegrity - optimize");
+            LowkeyAnkiDroidApp.sendExceptionReport(e, "fixIntegrity - optimize");
         }
         file = new File(mPath);
         long newSize = file.length();
@@ -1859,7 +1859,7 @@ public class Collection {
                         String details = String.format(Locale.ROOT, "deleteNotesWithWrongFieldCounts row: %d col: %d",
                                 currentRow,
                                 cur.getColumnCount());
-                        AnkiDroidApp.sendExceptionReport(ex, details);
+                        LowkeyAnkiDroidApp.sendExceptionReport(ex, details);
                         firstException = ex;
                     }
                 }
@@ -2082,9 +2082,9 @@ public class Collection {
         // False/True. This should be repaired before setting mConf;
         // otherwise this may save a faulty value in mConf, and if
         // it's done just before the value is read, this may lead to
-        // bug #5523. This bug should occur only for people using anki
+        // bug #5523. This bug should occur only for people using lowanki
         // prior to version 2.16 and has been corrected with
-        // dae/anki#347
+        // dae/lowanki#347
         Upgrade.upgradeJSONIfNecessary(this, conf, "sortBackwards", false);
         mConf = conf;
     }

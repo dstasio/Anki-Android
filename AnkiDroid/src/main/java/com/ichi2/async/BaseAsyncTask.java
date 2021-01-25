@@ -21,7 +21,7 @@ import android.os.AsyncTask;
 import com.ichi2.utils.MethodLogger;
 import com.ichi2.utils.Threads;
 
-import static com.ichi2.anki.AnkiDroidApp.sendExceptionReport;
+import static com.ichi2.lowanki.LowkeyAnkiDroidApp.sendExceptionReport;
 
 public class BaseAsyncTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> implements CancelListener, ProgressSender<Progress> {
 

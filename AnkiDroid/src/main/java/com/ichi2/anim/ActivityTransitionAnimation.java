@@ -3,9 +3,7 @@ package com.ichi2.anim;
 import android.annotation.TargetApi;
 import android.app.Activity;
 
-import com.ichi2.anki.R;
-
-import static com.ichi2.anim.ActivityTransitionAnimation.Direction.*;
+import com.ichi2.lowanki.R;
 
 public class ActivityTransitionAnimation {
     @TargetApi(5)

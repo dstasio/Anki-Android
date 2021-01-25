@@ -33,9 +33,9 @@ import androidx.annotation.NonNull;
 import android.os.StatFs;
 import android.util.Pair;
 
-import com.ichi2.anki.AnkiFont;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.AnkiFont;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.R;
 import com.ichi2.compat.CompatHelper;
 import com.ichi2.utils.ImportUtils;
 
@@ -117,8 +117,8 @@ public class Utils {
     /**
      * Return a string representing a time quantity
      *
-     * Equivalent to Anki's anki/utils.py's shortTimeFmt, applied to a number.
-     * I.e. equivalent to Anki's anki/utils.py's fmtTimeSpan, with the parameter short=True.
+     * Equivalent to Anki's lowanki/utils.py's shortTimeFmt, applied to a number.
+     * I.e. equivalent to Anki's lowanki/utils.py's fmtTimeSpan, with the parameter short=True.
      *
      * @param context The application's environment.
      * @param time_s The time to format, in seconds
@@ -148,8 +148,8 @@ public class Utils {
     /**
      * Return a string representing a time quantity
      *
-     * Equivalent to Anki's anki/utils.py's shortTimeFmt, applied to a number.
-     * I.e. equivalent to Anki's anki/utils.py's fmtTimeSpan, with the parameter short=True.
+     * Equivalent to Anki's lowanki/utils.py's shortTimeFmt, applied to a number.
+     * I.e. equivalent to Anki's lowanki/utils.py's fmtTimeSpan, with the parameter short=True.
      *
      * @param context The application's environment.
      * @param time_s The time to format, in seconds
@@ -242,7 +242,7 @@ public class Utils {
     /**
      * Return a proper string for a time value in seconds
      *
-     * Similar to Anki anki/utils.py's fmtTimeSpan.
+     * Similar to Anki lowanki/utils.py's fmtTimeSpan.
      *
      * @param context The application's environment.
      * @param time_s The time to format, in seconds
@@ -256,7 +256,7 @@ public class Utils {
     /**
      * Return a proper string for a time value in seconds
      *
-     * Similar to Anki anki/utils.py's fmtTimeSpan.
+     * Similar to Anki lowanki/utils.py's fmtTimeSpan.
      *
      * @param context The application's environment.
      * @param time_s The time to format, in seconds

@@ -31,7 +31,7 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Pair;
 
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.R;
 import com.ichi2.async.CancelListener;
 import com.ichi2.libanki.Card;
 import com.ichi2.libanki.Collection;
@@ -2230,7 +2230,7 @@ public class SchedV2 extends AbstractSched {
 
     /** true if there are cards in learning, with review due the same
      * day, in the selected decks. */
-    /* not in upstream anki. As revDue and newDue, it's used to check
+    /* not in upstream lowanki. As revDue and newDue, it's used to check
      * what to do when a deck is selected in deck picker. When this
      * method is called, we already know that no cards is due
      * immedietly. It answers whether cards will be due later in the

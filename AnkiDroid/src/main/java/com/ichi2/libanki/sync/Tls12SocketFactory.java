@@ -18,7 +18,7 @@ package com.ichi2.libanki.sync;
 
 import android.os.Build;
 
-import com.ichi2.anki.AnkiDroidApp;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -95,7 +95,7 @@ public class Tls12SocketFactory extends SSLSocketFactory {
 
     private static Certificate getUserTrustRootCertificate() throws CertificateException, IOException {
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
-        try (InputStream crt = AnkiDroidApp.getResourceAsStream("assets/USERTrust_RSA.crt")) {
+        try (InputStream crt = LowkeyAnkiDroidApp.getResourceAsStream("assets/USERTrust_RSA.crt")) {
             return cf.generateCertificate(crt);
         }
     }

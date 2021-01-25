@@ -31,10 +31,10 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.IntentHandler;
-import com.ichi2.anki.R;
-import com.ichi2.anki.analytics.UsageAnalytics;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.IntentHandler;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.analytics.UsageAnalytics;
 
 import timber.log.Timber;
 
@@ -56,7 +56,7 @@ public class AnkiDroidWidgetSmall extends AppWidgetProvider {
     public void onEnabled(Context context) {
         super.onEnabled(context);
         Timber.d("SmallWidget: Widget enabled");
-        SharedPreferences preferences = AnkiDroidApp.getSharedPrefs(context);
+        SharedPreferences preferences = LowkeyAnkiDroidApp.getSharedPrefs(context);
         preferences.edit().putBoolean("widgetSmallEnabled", true).commit();
         UsageAnalytics.sendAnalyticsEvent(this.getClass().getSimpleName(), "enabled");
     }
@@ -66,7 +66,7 @@ public class AnkiDroidWidgetSmall extends AppWidgetProvider {
     public void onDisabled(Context context) {
         super.onDisabled(context);
         Timber.d("SmallWidget: Widget disabled");
-        SharedPreferences preferences = AnkiDroidApp.getSharedPrefs(context);
+        SharedPreferences preferences = LowkeyAnkiDroidApp.getSharedPrefs(context);
         preferences.edit().putBoolean("widgetSmallEnabled", false).commit();
         UsageAnalytics.sendAnalyticsEvent(this.getClass().getSimpleName(), "disabled");
     }
@@ -141,7 +141,7 @@ public class AnkiDroidWidgetSmall extends AppWidgetProvider {
 
             RemoteViews updateViews = new RemoteViews(context.getPackageName(), R.layout.widget_small);
 
-            boolean mounted = AnkiDroidApp.isSdCardMounted();
+            boolean mounted = LowkeyAnkiDroidApp.isSdCardMounted();
             if (!mounted) {
                 updateViews.setViewVisibility(R.id.widget_due, View.INVISIBLE);
                 updateViews.setViewVisibility(R.id.widget_eta, View.INVISIBLE);
@@ -158,7 +158,7 @@ public class AnkiDroidWidgetSmall extends AppWidgetProvider {
                                     WidgetStatus.update(getBaseContext());
                                     remounted = false;
                                     if (mMountReceiver != null) {
-                                        AnkiDroidApp.getInstance().unregisterReceiver(mMountReceiver);
+                                        LowkeyAnkiDroidApp.getInstance().unregisterReceiver(mMountReceiver);
                                     }
                                 } else {
                                     remounted = true;
@@ -169,7 +169,7 @@ public class AnkiDroidWidgetSmall extends AppWidgetProvider {
                     IntentFilter iFilter = new IntentFilter();
                     iFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
                     iFilter.addDataScheme("file");
-                    AnkiDroidApp.getInstance().registerReceiver(mMountReceiver, iFilter);
+                    LowkeyAnkiDroidApp.getInstance().registerReceiver(mMountReceiver, iFilter);
                 }
             } else {
                 // If we do not have a cached version, always update.

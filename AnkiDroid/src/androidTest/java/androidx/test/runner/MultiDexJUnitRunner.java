@@ -32,7 +32,7 @@ import androidx.test.internal.runner.TestRequestBuilder;
 @SuppressWarnings("unused") //referenced by build.gradle
 public class MultiDexJUnitRunner extends AndroidJUnitRunner {
     // TODO: See if we can check the number of executed tests on a full run, and ensure this exceeds a threshold.
-    // as instrumentation runs on my local machine occasionally fail to load com.ichi2.anki
+    // as instrumentation runs on my local machine occasionally fail to load com.ichi2.lowanki
 
     @Override
     public void onCreate(Bundle arguments) {

@@ -23,8 +23,8 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import androidx.core.content.ContextCompat;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
 
 public class Themes {
     public final static int ALPHA_ICON_ENABLED_LIGHT = 255; // 100%
@@ -40,7 +40,7 @@ public class Themes {
 
 
     public static void setTheme(Context context) {
-        SharedPreferences prefs = AnkiDroidApp.getSharedPrefs(context.getApplicationContext());
+        SharedPreferences prefs = LowkeyAnkiDroidApp.getSharedPrefs(context.getApplicationContext());
         if (prefs.getBoolean("invertedColors", false)) {
             int theme = Integer.parseInt(prefs.getString("nightTheme", "0"));
             switch (theme) {
@@ -65,7 +65,7 @@ public class Themes {
     }
 
     public static void setThemeLegacy(Context context) {
-        SharedPreferences prefs = AnkiDroidApp.getSharedPrefs(context.getApplicationContext());
+        SharedPreferences prefs = LowkeyAnkiDroidApp.getSharedPrefs(context.getApplicationContext());
         if (prefs.getBoolean("invertedColors", false)) {
             int theme = Integer.parseInt(prefs.getString("nightTheme", "0"));
             switch (theme) {
@@ -124,7 +124,7 @@ public class Themes {
      * whether we are in day mode or night mode.
      */
     public static int getCurrentTheme(Context context) {
-        SharedPreferences prefs = AnkiDroidApp.getSharedPrefs(context);
+        SharedPreferences prefs = LowkeyAnkiDroidApp.getSharedPrefs(context);
         if (prefs.getBoolean("invertedColors", false)) {
             return Integer.parseInt(prefs.getString("nightTheme", "0"));
         } else {

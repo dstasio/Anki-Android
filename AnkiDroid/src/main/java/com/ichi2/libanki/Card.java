@@ -23,8 +23,8 @@ import android.database.Cursor;
 import android.text.TextUtils;
 
 import com.ichi2.utils.Assert;
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
 import com.ichi2.utils.LanguageUtil;
 import com.ichi2.utils.JSONObject;
 
@@ -695,7 +695,7 @@ public class Card implements Cloneable {
         long date;
         long due = getDue();
         if (getODid() != 0) {
-            return AnkiDroidApp.getAppResources().getString(R.string.card_browser_due_filtered_card);
+            return LowkeyAnkiDroidApp.getAppResources().getString(R.string.card_browser_due_filtered_card);
         } else if (getQueue() == Consts.QUEUE_TYPE_LRN) {
             date = due;
         } else if (getQueue() == Consts.QUEUE_TYPE_NEW || getType() == Consts.CARD_TYPE_NEW) {

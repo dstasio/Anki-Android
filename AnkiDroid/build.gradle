@@ -18,7 +18,7 @@ android {
     compileSdkVersion 29 // change .travis.yml build tools at same time
 
     defaultConfig {
-        applicationId "com.ichi2.anki"
+        applicationId "com.ichi2.lowanki"
 
         // The version number is of the form:
         // <major>.<minor>.<maintenance>[dev|alpha<build>|beta<build>|]
@@ -47,7 +47,7 @@ android {
         //noinspection OldTargetApi - also performed in api/build.fradle
         targetSdkVersion 29 // change .travis.yml platform download at same time
         multiDexEnabled true
-        testApplicationId "com.ichi2.anki.tests"
+        testApplicationId "com.ichi2.lowanki.tests"
         vectorDrawables.useSupportLibrary = true
         // This is a custom class, in androidx to override package-level functions
         testInstrumentationRunner 'androidx.test.runner.MultiDexJUnitRunner'

@@ -36,10 +36,10 @@ import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.widget.TimePicker;
 
-import com.ichi2.anki.AbstractFlashcardViewer;
-import com.ichi2.anki.AnkiActivity;
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.AbstractFlashcardViewer;
+import com.ichi2.lowanki.AnkiActivity;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -81,7 +81,7 @@ public class CompatV16 implements Compat {
     @Override
     public void setFullScreen(AbstractFlashcardViewer a) {
         a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        final int fullscreenMode = Integer.parseInt(AnkiDroidApp.getSharedPrefs(a).getString("fullscreenMode", "0"));
+        final int fullscreenMode = Integer.parseInt(LowkeyAnkiDroidApp.getSharedPrefs(a).getString("fullscreenMode", "0"));
         if (fullscreenMode >= FULLSCREEN_ALL_GONE) {
             final View answerButtons = a.findViewById(R.id.answer_options_layout);
             answerButtons.setVisibility(View.GONE);

@@ -28,7 +28,7 @@ import android.view.View;
 import android.view.Window;
 import android.webkit.CookieManager;
 
-import com.ichi2.anki.AnkiDroidApp;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 
 import timber.log.Timber;
 
@@ -64,7 +64,7 @@ public class CompatV21 extends CompatV19 implements Compat {
     @Override
     @SuppressLint("NewApi")
     public int getCameraCount() {
-        CameraManager cameraManager = (CameraManager)AnkiDroidApp.getInstance().getApplicationContext()
+        CameraManager cameraManager = (CameraManager) LowkeyAnkiDroidApp.getInstance().getApplicationContext()
                 .getSystemService(Context.CAMERA_SERVICE);
         try {
             if (cameraManager != null) {

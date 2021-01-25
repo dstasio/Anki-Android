@@ -2,7 +2,7 @@ package com.ichi2.libanki;
 
 import android.content.Context;
 
-import com.ichi2.anki.RobolectricTest;
+import com.ichi2.lowanki.RobolectricTest;
 import com.ichi2.libanki.template.Template;
 
 import org.junit.Test;

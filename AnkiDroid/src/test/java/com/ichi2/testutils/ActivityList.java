@@ -20,30 +20,30 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.ichi2.anki.CardBrowser;
-import com.ichi2.anki.CardInfo;
-import com.ichi2.anki.CardTemplateBrowserAppearanceEditor;
-import com.ichi2.anki.CardTemplateEditor;
-import com.ichi2.anki.CardTemplatePreviewer;
-import com.ichi2.anki.DeckOptions;
-import com.ichi2.anki.DeckPicker;
-import com.ichi2.anki.FilteredDeckOptions;
-import com.ichi2.anki.Info;
-import com.ichi2.anki.IntentHandler;
-import com.ichi2.anki.ModelBrowser;
-import com.ichi2.anki.ModelFieldEditor;
-import com.ichi2.anki.MyAccount;
-import com.ichi2.anki.NoteEditor;
-import com.ichi2.anki.Preferences;
-import com.ichi2.anki.Previewer;
-import com.ichi2.anki.Reviewer;
-import com.ichi2.anki.Statistics;
-import com.ichi2.anki.StudyOptionsActivity;
-import com.ichi2.anki.VideoPlayer;
-import com.ichi2.anki.multimediacard.activity.LoadPronounciationActivity;
-import com.ichi2.anki.multimediacard.activity.MultimediaEditFieldActivity;
-import com.ichi2.anki.multimediacard.activity.TranslationActivity;
-import com.ichi2.anki.services.ReminderService;
+import com.ichi2.lowanki.CardBrowser;
+import com.ichi2.lowanki.CardInfo;
+import com.ichi2.lowanki.CardTemplateBrowserAppearanceEditor;
+import com.ichi2.lowanki.CardTemplateEditor;
+import com.ichi2.lowanki.CardTemplatePreviewer;
+import com.ichi2.lowanki.DeckOptions;
+import com.ichi2.lowanki.DeckPicker;
+import com.ichi2.lowanki.FilteredDeckOptions;
+import com.ichi2.lowanki.Info;
+import com.ichi2.lowanki.IntentHandler;
+import com.ichi2.lowanki.ModelBrowser;
+import com.ichi2.lowanki.ModelFieldEditor;
+import com.ichi2.lowanki.MyAccount;
+import com.ichi2.lowanki.NoteEditor;
+import com.ichi2.lowanki.Preferences;
+import com.ichi2.lowanki.Previewer;
+import com.ichi2.lowanki.Reviewer;
+import com.ichi2.lowanki.Statistics;
+import com.ichi2.lowanki.StudyOptionsActivity;
+import com.ichi2.lowanki.VideoPlayer;
+import com.ichi2.lowanki.multimediacard.activity.LoadPronounciationActivity;
+import com.ichi2.lowanki.multimediacard.activity.MultimediaEditFieldActivity;
+import com.ichi2.lowanki.multimediacard.activity.TranslationActivity;
+import com.ichi2.lowanki.services.ReminderService;
 import com.ichi2.utils.FunctionalInterfaces.Function;
 
 import org.robolectric.Robolectric;
@@ -54,8 +54,8 @@ import java.util.List;
 
 import androidx.annotation.CheckResult;
 
-import static com.ichi2.anki.CardTemplateBrowserAppearanceEditor.INTENT_ANSWER_FORMAT;
-import static com.ichi2.anki.CardTemplateBrowserAppearanceEditor.INTENT_QUESTION_FORMAT;
+import static com.ichi2.lowanki.CardTemplateBrowserAppearanceEditor.INTENT_ANSWER_FORMAT;
+import static com.ichi2.lowanki.CardTemplateBrowserAppearanceEditor.INTENT_QUESTION_FORMAT;
 import static com.ichi2.testutils.ActivityList.ActivityLaunchParam.get;
 
 public class ActivityList {

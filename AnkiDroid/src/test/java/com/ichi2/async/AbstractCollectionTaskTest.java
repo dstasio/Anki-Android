@@ -16,7 +16,7 @@
 
 package com.ichi2.async;
 
-import com.ichi2.anki.RobolectricTest;
+import com.ichi2.lowanki.RobolectricTest;
 
 import org.junit.runner.RunWith;
 

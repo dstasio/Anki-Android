@@ -19,8 +19,8 @@ package com.ichi2.libanki.template;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
 import com.ichi2.libanki.Utils;
 
 import java.util.Arrays;
@@ -189,7 +189,7 @@ public class Template {
     }
 
     /**
-     * {{{ functions just like {{ in anki
+     * {{{ functions just like {{ in lowanki
      */
     private @NonNull String render_tag(@NonNull String tag_name, @NonNull Map<String, String> context) {
         return render_unescaped(tag_name, context);
@@ -312,7 +312,7 @@ public class Template {
         if (txt.trim().length() == 0) {
             return "";
         }
-        Resources res = AnkiDroidApp.getAppResources();
+        Resources res = LowkeyAnkiDroidApp.getAppResources();
         // random id
         String domid = "hint" + txt.hashCode();
         return "<a class=hint href=\"#\" onclick=\"this.style.display='none';document.getElementById('" +

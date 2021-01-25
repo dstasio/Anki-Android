@@ -1,7 +1,7 @@
 package com.ichi2.libanki;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
 import com.ichi2.utils.JSONObject;
 
 import androidx.annotation.StringRes;
@@ -49,7 +49,7 @@ public class StdModels {
     }
 
     public String getDefaultName() {
-        return AnkiDroidApp.getAppResources().getString(defaultName);
+        return LowkeyAnkiDroidApp.getAppResources().getString(defaultName);
     }
 
 
@@ -58,13 +58,13 @@ public class StdModels {
     public static final StdModels basicModel = new StdModels(
             (Models mm, String name) -> {
                 Model m = mm.newModel(name);
-                String frontName = AnkiDroidApp.getAppResources().getString(R.string.front_field_name);
+                String frontName = LowkeyAnkiDroidApp.getAppResources().getString(R.string.front_field_name);
                 JSONObject fm = mm.newField(frontName);
                 mm.addFieldInNewModel(m, fm);
-                String backName = AnkiDroidApp.getAppResources().getString(R.string.back_field_name);
+                String backName = LowkeyAnkiDroidApp.getAppResources().getString(R.string.back_field_name);
                 fm = mm.newField(backName);
                 mm.addFieldInNewModel(m, fm);
-                String cardOneName = AnkiDroidApp.getAppResources().getString(R.string.card_n_name, 1);
+                String cardOneName = LowkeyAnkiDroidApp.getAppResources().getString(R.string.card_n_name, 1);
                 JSONObject t = Models.newTemplate(cardOneName);
                 t.put("qfmt", "{{" + frontName + "}}");
                 t.put("afmt", "{{FrontSide}}\n\n<hr id=answer>\n\n{{" + backName + "}}");
@@ -90,7 +90,7 @@ public class StdModels {
         Model m = basicModel._new(mm, name);
         String frontName = m.getJSONArray("flds").getJSONObject(0).getString("name");
         String backName = m.getJSONArray("flds").getJSONObject(1).getString("name");
-        String cardTwoName = AnkiDroidApp.getAppResources().getString(R.string.card_n_name, 2);
+        String cardTwoName = LowkeyAnkiDroidApp.getAppResources().getString(R.string.card_n_name, 2);
         JSONObject t = Models.newTemplate(cardTwoName);
         t.put("qfmt", "{{" + backName + "}}");
         t.put("afmt", "{{FrontSide}}\n\n<hr id=answer>\n\n{{"+frontName+"}}");
@@ -102,7 +102,7 @@ public class StdModels {
     public static final StdModels forwardOptionalReverseModel = new StdModels
         ( (Models mm, String name) -> {
         Model m = forwardReverseModel._new(mm, name);
-        String av = AnkiDroidApp.getAppResources().getString(R.string.field_to_ask_front_name);
+        String av = LowkeyAnkiDroidApp.getAppResources().getString(R.string.field_to_ask_front_name);
         JSONObject fm = mm.newField(av);
         mm.addFieldInNewModel(m, fm);
         JSONObject t = m.getJSONArray("tmpls").getJSONObject(1);
@@ -115,13 +115,13 @@ public class StdModels {
         ( (Models mm, String name) -> {
         Model m = mm.newModel(name);
         m.put("type", Consts.MODEL_CLOZE);
-        String txt = AnkiDroidApp.getAppResources().getString(R.string.text_field_name);
+        String txt = LowkeyAnkiDroidApp.getAppResources().getString(R.string.text_field_name);
         JSONObject fm = mm.newField(txt);
         mm.addFieldInNewModel(m, fm);
-        String fieldExtraName = AnkiDroidApp.getAppResources().getString(R.string.extra_field_name);
+        String fieldExtraName = LowkeyAnkiDroidApp.getAppResources().getString(R.string.extra_field_name);
         fm = mm.newField(fieldExtraName);
         mm.addFieldInNewModel(m, fm);
-        String cardTypeClozeName = AnkiDroidApp.getAppResources().getString(R.string.cloze_model_name);
+        String cardTypeClozeName = LowkeyAnkiDroidApp.getAppResources().getString(R.string.cloze_model_name);
         JSONObject t = Models.newTemplate(cardTypeClozeName);
         String fmt = "{{cloze:" + txt + "}}";
         m.put("css", m.getString("css") + ".cloze {" + "font-weight: bold;" + "color: blue;" + "}");

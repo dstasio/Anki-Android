@@ -18,8 +18,8 @@ package com.ichi2.libanki.sched;
 
 import android.database.Cursor;
 
-import com.ichi2.anki.RobolectricTest;
-import com.ichi2.anki.exception.ConfirmModSchemaException;
+import com.ichi2.lowanki.RobolectricTest;
+import com.ichi2.lowanki.exception.ConfirmModSchemaException;
 import com.ichi2.libanki.Card;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.Consts;
@@ -1657,7 +1657,7 @@ public class SchedV2Test extends RobolectricTest {
 
 
     @Test
-    @Ignore("Port anki@a9c93d933cadbf5d9c7e3e2b4f7a25d2c59da5d3")
+    @Ignore("Port lowanki@a9c93d933cadbf5d9c7e3e2b4f7a25d2c59da5d3")
     public void test_initial_repeat() throws Exception {
         Collection col = getColV2();
         Note note = col.newNote();

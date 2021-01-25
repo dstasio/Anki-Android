@@ -20,7 +20,7 @@ package com.ichi2.libanki.importer;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.ichi2.anki.exception.ImportExportException;
+import com.ichi2.lowanki.exception.ImportExportException;
 import com.ichi2.async.CollectionTask;
 import com.ichi2.libanki.Collection;
 

@@ -2,14 +2,11 @@ package com.ichi2.libanki;
 
 import android.content.Context;
 
-import com.ichi2.anki.RobolectricTest;
-import com.ichi2.libanki.template.Template;
+import com.ichi2.lowanki.RobolectricTest;
 
 import com.ichi2.utils.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.ArrayList;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;

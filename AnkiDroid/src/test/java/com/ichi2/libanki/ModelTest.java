@@ -1,7 +1,7 @@
 package com.ichi2.libanki;
 
-import com.ichi2.anki.RobolectricTest;
-import com.ichi2.anki.exception.ConfirmModSchemaException;
+import com.ichi2.lowanki.RobolectricTest;
+import com.ichi2.lowanki.exception.ConfirmModSchemaException;
 import com.ichi2.utils.JSONArray;
 import com.ichi2.utils.JSONObject;
 
@@ -457,7 +457,7 @@ public class ModelTest extends RobolectricTest {
         reqSize(opt);
         r = opt.getJSONArray("req").getJSONArray(0);
         assertTrue(Arrays.asList(new String[] {REQ_ANY, REQ_ALL}).contains(r.getString(1)));
-        // TODO: Port anki@4e33775ed4346ef136ece6ef5efec5ba46057c6b
+        // TODO: Port lowanki@4e33775ed4346ef136ece6ef5efec5ba46057c6b
         assertEquals(new JSONArray("[0]"), r.getJSONArray(2));
     }
 

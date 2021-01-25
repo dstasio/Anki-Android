@@ -21,7 +21,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.MenuItem;
 
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -26,7 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import timber.log.Timber;
 
-import com.ichi2.anki.exception.ConfirmModSchemaException;
+import com.ichi2.lowanki.exception.ConfirmModSchemaException;
 import com.ichi2.utils.Assert;
 
 import com.ichi2.utils.JSONArray;
@@ -319,7 +319,7 @@ public class Models {
         return m;
     }
 
-    // not in anki
+    // not in lowanki
     public static boolean isModelNew(Model m) {
         return m.getLong("id") == 0;
     }

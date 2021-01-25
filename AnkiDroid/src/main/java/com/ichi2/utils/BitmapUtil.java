@@ -26,7 +26,7 @@ import android.graphics.drawable.Drawable;
 
 import android.widget.ImageView;
 
-import com.ichi2.anki.AnkiDroidApp;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -78,7 +78,7 @@ public class BitmapUtil {
             }
         } catch (Exception e) {
             //#5513 - We don't know the reason for the crash, let's find out.
-            AnkiDroidApp.sendExceptionReport(e, "BitmapUtil decodeFile");
+            LowkeyAnkiDroidApp.sendExceptionReport(e, "BitmapUtil decodeFile");
         }
         return bmp;
     }

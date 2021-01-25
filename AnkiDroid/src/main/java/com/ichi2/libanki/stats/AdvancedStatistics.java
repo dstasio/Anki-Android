@@ -21,10 +21,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.R;
-import com.ichi2.anki.stats.StatsMetaInfo;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.stats.StatsMetaInfo;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.Consts;
 import com.ichi2.libanki.DB;
@@ -41,7 +41,6 @@ import java.util.Random;
 import java.util.Stack;
 
 import androidx.annotation.NonNull;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 import timber.log.Timber;
 
 import static com.ichi2.libanki.stats.Stats.SECONDS_PER_DAY;
@@ -163,7 +162,7 @@ public class AdvancedStatistics {
      */
     public StatsMetaInfo calculateDueAsMetaInfo(StatsMetaInfo metaInfo, Stats.AxisType type, Context context, String dids) {
 
-        if (!AnkiDroidApp.getSharedPrefs(context).getBoolean("advanced_statistics_enabled", false)) {
+        if (!LowkeyAnkiDroidApp.getSharedPrefs(context).getBoolean("advanced_statistics_enabled", false)) {
             return metaInfo;
         }
         //To indicate that we calculated the statistics so that Stats.java knows that it shouldn't display the standard Forecast chart.
@@ -1007,7 +1006,7 @@ public class AdvancedStatistics {
         private final Collection mCol;
 
         public Settings(Context context) {
-            SharedPreferences prefs = AnkiDroidApp.getSharedPrefs(context);
+            SharedPreferences prefs = LowkeyAnkiDroidApp.getSharedPrefs(context);
             mCol = CollectionHelper.getInstance().getCol(context);
 
             computeNDays = prefs.getInt("advanced_forecast_stats_compute_n_days", 0);

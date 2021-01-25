@@ -298,7 +298,7 @@ public class Tags {
         return join(canonify(currentTags));
     }
 
-    // submethod of remFromStr in anki
+    // submethod of remFromStr in lowanki
     public boolean wildcard(String pat, String str) {
         String pat_replaced = Pattern.quote(pat).replace("\\*", ".*");
         return Pattern.compile(pat_replaced, Pattern.CASE_INSENSITIVE|Pattern.UNICODE_CASE).matcher(str).matches();
