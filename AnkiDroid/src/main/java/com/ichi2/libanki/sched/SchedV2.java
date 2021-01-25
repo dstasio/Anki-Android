@@ -1613,7 +1613,8 @@ public class SchedV2 extends AbstractSched {
     protected int _rescheduleLapse(@NonNull Card card) {
         JSONObject conf = _lapseConf(card);
         card.setLapses(card.getLapses() + 1);
-        card.setFactor(Math.max(1300, card.getFactor() - 200));
+        // @note: not tested
+        //card.setFactor(Math.max(1300, card.getFactor() - 200));
         int delay;
          boolean suspended = _checkLeech(card, conf) && card.getQueue() == Consts.QUEUE_TYPE_SUSPENDED;
         if (conf.getJSONArray("delays").length() != 0 && !suspended) {
@@ -1649,7 +1650,8 @@ public class SchedV2 extends AbstractSched {
         }
 
         // then the rest
-        card.setFactor(Math.max(1300, card.getFactor() + FACTOR_ADDITION_VALUES[ease - 2]));
+        // @note: not tested
+        //card.setFactor(Math.max(1300, card.getFactor() + FACTOR_ADDITION_VALUES[ease - 2]));
         card.setDue(mToday + card.getIvl());
 
         // card leaves filtered deck
