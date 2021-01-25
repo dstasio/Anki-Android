@@ -34,9 +34,9 @@ import android.os.StatFs;
 import android.text.TextUtils;
 import android.util.Pair;
 
-import com.ichi2.anki.AnkiFont;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.AnkiFont;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.R;
 import com.ichi2.compat.CompatHelper;
 import com.ichi2.utils.ImportUtils;
 
@@ -77,7 +77,6 @@ import androidx.core.text.HtmlCompat;
 import timber.log.Timber;
 
 import static com.ichi2.libanki.Consts.FIELD_SEPARATOR;
-import static com.ichi2.utils.CollectionUtils.addAll;
 
 @SuppressWarnings({"PMD.AvoidThrowingRawExceptionTypes","PMD.AvoidReassigningParameters",
         "PMD.MethodNamingConventions","PMD.FieldDeclarationsShouldBeAtStartOfClass"})

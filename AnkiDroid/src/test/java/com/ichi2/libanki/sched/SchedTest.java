@@ -19,10 +19,10 @@ package com.ichi2.libanki.sched;
 
 import android.database.Cursor;
 
-import com.ichi2.anki.AbstractFlashcardViewer;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.RobolectricTest;
-import com.ichi2.anki.exception.ConfirmModSchemaException;
+import com.ichi2.lowanki.AbstractFlashcardViewer;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.RobolectricTest;
+import com.ichi2.lowanki.exception.ConfirmModSchemaException;
 import com.ichi2.libanki.Card;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.Consts;
@@ -61,11 +61,9 @@ import static com.ichi2.testutils.AnkiAssert.checkRevIvl;
 import static com.ichi2.testutils.AnkiAssert.without_unicode_isolation;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.either;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;

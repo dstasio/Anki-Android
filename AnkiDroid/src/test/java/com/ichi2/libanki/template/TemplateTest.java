@@ -16,8 +16,7 @@
 
 package com.ichi2.libanki.template;
 
-import com.ichi2.anki.R;
-import com.ichi2.anki.RobolectricTest;
+import com.ichi2.lowanki.RobolectricTest;
 
 import org.hamcrest.Matchers;
 import org.junit.Ignore;

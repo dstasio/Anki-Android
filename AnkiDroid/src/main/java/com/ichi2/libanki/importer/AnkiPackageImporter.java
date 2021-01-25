@@ -18,11 +18,11 @@ package com.ichi2.libanki.importer;
 
 
 import com.google.gson.stream.JsonReader;
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.BackupManager;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.R;
-import com.ichi2.anki.exception.ImportExportException;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.BackupManager;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.exception.ImportExportException;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.Storage;
 import com.ichi2.libanki.Utils;
@@ -94,7 +94,7 @@ public class AnkiPackageImporter extends Anki2Importer {
                 colname = CollectionHelper.COLLECTION_FILENAME;
             } catch (IOException e) {
                 Timber.e(e, "Failed to unzip apkg.");
-                AnkiDroidApp.sendExceptionReport(e, "AnkiPackageImporter::run() - unzip");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "AnkiPackageImporter::run() - unzip");
                 mLog.add(getRes().getString(R.string.import_log_failed_unzip, e.getLocalizedMessage()));
                 return;
             }

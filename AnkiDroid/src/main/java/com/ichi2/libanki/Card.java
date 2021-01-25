@@ -22,12 +22,12 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.text.TextUtils;
 
-import com.ichi2.anki.CollectionHelper;
+import com.ichi2.lowanki.CollectionHelper;
 import com.ichi2.async.CancelListener;
 import com.ichi2.libanki.template.TemplateError;
 import com.ichi2.utils.Assert;
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
 import com.ichi2.utils.LanguageUtil;
 import com.ichi2.utils.JSONObject;
 
@@ -706,7 +706,7 @@ public class Card implements Cloneable {
         long date;
         long due = getDue();
         if (isInDynamicDeck()) {
-            return AnkiDroidApp.getAppResources().getString(R.string.card_browser_due_filtered_card);
+            return LowkeyAnkiDroidApp.getAppResources().getString(R.string.card_browser_due_filtered_card);
         } else if (getQueue() == Consts.QUEUE_TYPE_LRN) {
             date = due;
         } else if (getQueue() == Consts.QUEUE_TYPE_NEW || getType() == Consts.CARD_TYPE_NEW) {
@@ -838,7 +838,7 @@ public class Card implements Cloneable {
     }
 
     public static @NonNull Card[] deepCopyCardArray(@NonNull Card[] originals, @NonNull CancelListener cancelListener) throws CancellationException {
-        Collection col = CollectionHelper.getInstance().getCol(AnkiDroidApp.getInstance());
+        Collection col = CollectionHelper.getInstance().getCol(LowkeyAnkiDroidApp.getInstance());
         Card[] copies = new Card[originals.length];
         for (int i = 0; i < originals.length; i++) {
             if (cancelListener.isCancelled()) {

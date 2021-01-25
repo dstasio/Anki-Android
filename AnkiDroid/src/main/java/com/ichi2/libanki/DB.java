@@ -24,16 +24,13 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.BuildConfig;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.dialogs.DatabaseErrorDialog;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.BuildConfig;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.dialogs.DatabaseErrorDialog;
 import com.ichi2.utils.DatabaseChangeDecorator;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -67,7 +64,7 @@ public class DB {
      */
     public DB(String ankiFilename) {
 
-        SupportSQLiteOpenHelper.Configuration configuration = SupportSQLiteOpenHelper.Configuration.builder(AnkiDroidApp.getInstance())
+        SupportSQLiteOpenHelper.Configuration configuration = SupportSQLiteOpenHelper.Configuration.builder(LowkeyAnkiDroidApp.getInstance())
                 .name(ankiFilename)
                 .callback(getDBCallback())
                 .build();
@@ -120,7 +117,7 @@ public class DB {
         /** Send error message, but do not call super() which would delete the database */
         public void onCorruption(SupportSQLiteDatabase db) {
             Timber.e("The database has been corrupted: %s", db.getPath());
-            AnkiDroidApp.sendExceptionReport(new RuntimeException("Database corrupted"), "DB.MyDbErrorHandler.onCorruption", "Db has been corrupted: " + db.getPath());
+            LowkeyAnkiDroidApp.sendExceptionReport(new RuntimeException("Database corrupted"), "DB.MyDbErrorHandler.onCorruption", "Db has been corrupted: " + db.getPath());
             CollectionHelper.getInstance().closeCollection(false, "Database corrupted");
             DatabaseErrorDialog.databaseCorruptFlag = true;
         }

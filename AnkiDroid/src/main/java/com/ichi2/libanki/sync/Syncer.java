@@ -22,10 +22,10 @@ import android.database.SQLException;
 import android.util.Pair;
 
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
-import com.ichi2.anki.analytics.UsageAnalytics;
-import com.ichi2.anki.exception.UnknownHttpResponseException;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.analytics.UsageAnalytics;
+import com.ichi2.lowanki.exception.UnknownHttpResponseException;
 import com.ichi2.async.Connection;
 import com.ichi2.libanki.DB;
 import com.ichi2.libanki.Model;
@@ -285,10 +285,10 @@ public class Syncer {
         } catch (IllegalStateException e) {
             throw new RuntimeException(e);
         } catch (OutOfMemoryError e) {
-            AnkiDroidApp.sendExceptionReport(e, "Syncer-sync");
+            LowkeyAnkiDroidApp.sendExceptionReport(e, "Syncer-sync");
             return new Pair<>( OUT_OF_MEMORY_ERROR , null);
         } catch (IOException e) {
-            AnkiDroidApp.sendExceptionReport(e, "Syncer-sync");
+            LowkeyAnkiDroidApp.sendExceptionReport(e, "Syncer-sync");
             return new Pair<>( IO_EXCEPTION , null);
         }
         return new Pair<>( SUCCESS , null);

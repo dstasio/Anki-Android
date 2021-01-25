@@ -21,7 +21,7 @@
         NOT edit them, unless you change their corresponding values
     -->
     <!-- App name -->
-    <string name="app_name">AnkiDroid</string>
+    <string name="app_name">Lowkey AnkiDroid</string>
     <!-- Text to be shown in preference summary -->
     <string name="preference_summary_literal">XXX</string>
     <!-- Used in deck preferences -->
@@ -173,8 +173,8 @@
     <string name="licence_wiki">http://www.gnu.org/licenses/gpl.html</string>
     <string name="link_source">https://github.com/ankidroid/Anki-Android</string>
     <string name="link_donation">http://ankisrs.net/support</string>
-    <string name="link_market">market://details?id=com.ichi2.anki</string>
-    <string name="link_market_kindle">http://www.amazon.com/gp/mas/dl/android?p=com.ichi2.anki</string>
+    <string name="link_market">market://details?id=com.ichi2.lowanki</string>
+    <string name="link_market_kindle">http://www.amazon.com/gp/mas/dl/android?p=com.ichi2.lowanki</string>
     <string name="link_translation">http://crowdin.net/project/ankidroid</string>
     <string name="link_wikipedia_open_source">http://en.wikipedia.org/wiki/Open_source_software</string>
     <string name="link_contribution">https://github.com/ankidroid/Anki-Android/wiki/Contributing</string>

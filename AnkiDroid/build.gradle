@@ -29,7 +29,7 @@ android {
     compileSdkVersion 29 // change .travis.yml build tools at same time
 
     defaultConfig {
-        applicationId "com.ichi2.anki"
+        applicationId "com.ichi2.lowanki"
 
         // The version number is of the form:
         // <major>.<minor>.<maintenance>[dev|alpha<build>|beta<build>|]
@@ -57,7 +57,7 @@ android {
         minSdkVersion 21
         //noinspection OldTargetApi - also performed in api/build.fradle
         targetSdkVersion 29 // change .travis.yml platform download at same time
-        testApplicationId "com.ichi2.anki.tests"
+        testApplicationId "com.ichi2.lowanki.tests"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
@@ -92,6 +92,7 @@ android {
             splits.abi.universalApk = universalApkEnabled // Build universal APK for release with `-Duniversal-apk=true`
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            // @todo: remove report address
             buildConfigField "String", "ACRA_URL", '"https://ankidroid.org/acra/report"'
         }
     }

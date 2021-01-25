@@ -2,13 +2,12 @@ package com.ichi2.libanki.template;
 
 import android.content.Context;
 
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.R;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public abstract class TemplateError extends NoSuchElementException {
     public abstract String message(Context context);

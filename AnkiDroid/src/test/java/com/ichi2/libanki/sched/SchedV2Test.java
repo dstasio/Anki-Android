@@ -18,8 +18,8 @@ package com.ichi2.libanki.sched;
 
 import android.database.Cursor;
 
-import com.ichi2.anki.RobolectricTest;
-import com.ichi2.anki.exception.ConfirmModSchemaException;
+import com.ichi2.lowanki.RobolectricTest;
+import com.ichi2.lowanki.exception.ConfirmModSchemaException;
 import com.ichi2.libanki.Card;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.Consts;

@@ -16,7 +16,7 @@
 
 package com.ichi2.libanki;
 
-import com.ichi2.anki.tests.InstrumentedTest;
+import com.ichi2.lowanki.tests.InstrumentedTest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

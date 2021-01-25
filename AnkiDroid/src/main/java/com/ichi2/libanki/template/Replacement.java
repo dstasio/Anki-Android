@@ -2,10 +2,9 @@ package com.ichi2.libanki.template;
 
 import android.content.res.Resources;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.R;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +50,7 @@ public class Replacement extends ParsedNode {
         if (txt.trim().length() == 0) {
             return "";
         }
-        Resources res = AnkiDroidApp.getAppResources();
+        Resources res = LowkeyAnkiDroidApp.getAppResources();
         // random id
         String domid = "hint" + txt.hashCode();
         return "<a class=hint href=\"#\" onclick=\"this.style.display='none';document.getElementById('" +

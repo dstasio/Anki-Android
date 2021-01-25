@@ -20,8 +20,8 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.Preferences;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.Preferences;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -65,7 +65,7 @@ public class LanguageUtil {
      */
     @NonNull
     public static Locale getLocale(@Nullable String localeCode) {
-        SharedPreferences prefs = AnkiDroidApp.getSharedPrefs(AnkiDroidApp.getInstance().getBaseContext());
+        SharedPreferences prefs = LowkeyAnkiDroidApp.getSharedPrefs(LowkeyAnkiDroidApp.getInstance().getBaseContext());
         return getLocale(localeCode, prefs);
     }
 

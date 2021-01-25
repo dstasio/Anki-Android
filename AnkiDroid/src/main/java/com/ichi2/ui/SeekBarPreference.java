@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.ichi2.anki.AnkiDroidApp;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 
 @SuppressWarnings("deprecation") // TODO Tracked in https://github.com/ankidroid/Anki-Android/issues/5019
 public class SeekBarPreference extends android.preference.DialogPreference implements SeekBar.OnSeekBarChangeListener {
@@ -42,8 +42,8 @@ public class SeekBarPreference extends android.preference.DialogPreference imple
         mSuffix = attrs.getAttributeValue(androidns, "text");
         mDefault = attrs.getAttributeIntValue(androidns, "defaultValue", 0);
         mMax = attrs.getAttributeIntValue(androidns, "max", 100);
-        mMin = attrs.getAttributeIntValue(AnkiDroidApp.XML_CUSTOM_NAMESPACE, "min", 0);
-        mInterval = attrs.getAttributeIntValue(AnkiDroidApp.XML_CUSTOM_NAMESPACE, "interval", 1);
+        mMin = attrs.getAttributeIntValue(LowkeyAnkiDroidApp.XML_CUSTOM_NAMESPACE, "min", 0);
+        mInterval = attrs.getAttributeIntValue(LowkeyAnkiDroidApp.XML_CUSTOM_NAMESPACE, "interval", 1);
     }
 
 

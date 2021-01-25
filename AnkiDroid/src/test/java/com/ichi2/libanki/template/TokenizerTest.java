@@ -1,19 +1,10 @@
 package com.ichi2.libanki.template;
 
-import android.util.Pair;
+import com.ichi2.lowanki.RobolectricTest;
 
-import com.ichi2.anki.RobolectricTest;
-
-import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.NoSuchElementException;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -29,7 +20,6 @@ import static com.ichi2.libanki.template.Tokenizer.Token;
 import static com.ichi2.libanki.template.Tokenizer.next_token;
 import static com.ichi2.libanki.template.Tokenizer.text_token;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertEquals;

@@ -16,7 +16,7 @@
 
 package com.ichi2.utils;
 
-import com.ichi2.anki.RobolectricTest;
+import com.ichi2.lowanki.RobolectricTest;
 import com.ichi2.testutils.EmptyApplication;
 
 import org.junit.Test;

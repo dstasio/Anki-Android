@@ -46,7 +46,7 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="id_label, id_media_button, id_expand_button" />
 
-    <com.ichi2.anki.FieldEditText
+    <com.ichi2.lowanki.FieldEditText
         android:id="@+id/id_note_editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

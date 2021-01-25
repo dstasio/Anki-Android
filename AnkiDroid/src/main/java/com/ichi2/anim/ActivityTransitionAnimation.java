@@ -2,7 +2,7 @@ package com.ichi2.anim;
 
 import android.app.Activity;
 
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.R;
 
 public class ActivityTransitionAnimation {
     public static void slide(Activity activity, Direction direction) {

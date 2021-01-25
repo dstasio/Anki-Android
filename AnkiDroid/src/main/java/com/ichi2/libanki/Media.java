@@ -24,7 +24,7 @@ import android.text.TextUtils;
 
 import android.util.Pair;
 
-import com.ichi2.anki.AnkiDroidApp;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 import com.ichi2.libanki.exception.EmptyMediaException;
 import com.ichi2.libanki.template.TemplateFilters;
 import com.ichi2.utils.Assert;
@@ -1032,7 +1032,7 @@ public class Media {
             if (!ExceptionUtil.containsMessage(e, "no such table: meta")) {
                 throw e;
             }
-            AnkiDroidApp.sendExceptionReport(e, "media::rebuildIfInvalid");
+            LowkeyAnkiDroidApp.sendExceptionReport(e, "media::rebuildIfInvalid");
 
             // TODO: We don't know the root cause of the missing meta table
             Timber.w(e, "Error accessing media database. Rebuilding");

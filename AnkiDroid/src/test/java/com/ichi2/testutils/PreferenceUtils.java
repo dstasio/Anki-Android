@@ -19,7 +19,7 @@ package com.ichi2.testutils;
 import android.content.Context;
 import android.content.Intent;
 
-import com.ichi2.anki.Preferences;
+import com.ichi2.lowanki.Preferences;
 
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
@@ -31,7 +31,7 @@ public class PreferenceUtils {
 
     public static Set<String> getAllCustomButtonKeys(Context context) {
         AtomicReference<Set<String>> ret = new AtomicReference<>();
-        Intent i = Preferences.getPreferenceSubscreenIntent(context, "com.ichi2.anki.prefs.custom_buttons");
+        Intent i = Preferences.getPreferenceSubscreenIntent(context, "com.ichi2.lowanki.prefs.custom_buttons");
         try (ActivityScenario<Preferences> scenario = ActivityScenario.launch(i)) {
             scenario.moveToState(Lifecycle.State.STARTED);
             scenario.onActivity(a -> ret.set(a.getLoadedPreferenceKeys()));

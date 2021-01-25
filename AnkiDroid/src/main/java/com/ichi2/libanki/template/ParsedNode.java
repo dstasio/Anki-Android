@@ -1,15 +1,13 @@
 package com.ichi2.libanki.template;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Pair;
 
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.R;
 import com.ichi2.libanki.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -20,7 +18,6 @@ import java.util.WeakHashMap;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
-import okhttp3.internal.Util;
 
 /**
  * Represents a template, allow to check in linear time which card is empty/render card.

@@ -17,7 +17,7 @@
 
 package com.ichi2.libanki.sync;
 
-import com.ichi2.anki.exception.UnknownHttpResponseException;
+import com.ichi2.lowanki.exception.UnknownHttpResponseException;
 import com.ichi2.async.Connection;
 import com.ichi2.libanki.Consts;
 import com.ichi2.libanki.Utils;

@@ -24,15 +24,15 @@ import android.os.AsyncTask;
 import android.util.Pair;
 
 import com.google.gson.stream.JsonReader;
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.BackupManager;
-import com.ichi2.anki.CardBrowser;
-import com.ichi2.anki.CardUtils;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.R;
-import com.ichi2.anki.TemporaryModel;
-import com.ichi2.anki.exception.ConfirmModSchemaException;
-import com.ichi2.anki.exception.ImportExportException;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.BackupManager;
+import com.ichi2.lowanki.CardBrowser;
+import com.ichi2.lowanki.CardUtils;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.TemporaryModel;
+import com.ichi2.lowanki.exception.ConfirmModSchemaException;
+import com.ichi2.lowanki.exception.ImportExportException;
 import com.ichi2.libanki.Media;
 import com.ichi2.libanki.Model;
 import com.ichi2.libanki.Undoable;
@@ -100,7 +100,6 @@ import static com.ichi2.libanki.Consts.DECK_DYN;
 import static com.ichi2.libanki.Undoable.*;
 import static com.ichi2.utils.BooleanGetter.False;
 import static com.ichi2.utils.BooleanGetter.True;
-import static com.ichi2.utils.BooleanGetter.fromBoolean;
 
 /**
  * Loading in the background, so that AnkiDroid does not look like frozen.
@@ -211,7 +210,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
             }
         }
         setLatestInstance(this);
-        mContext = AnkiDroidApp.getInstance().getApplicationContext();
+        mContext = LowkeyAnkiDroidApp.getInstance().getApplicationContext();
 
         // Skip the task if the collection cannot be opened
         if ( mTask.getClass() != RepairCollectionn.class && mTask.getClass() != ImportReplace.class && CollectionHelper.getInstance().getColSafe(mContext) == null) {
@@ -281,7 +280,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
                     });
             } catch (RuntimeException e) {
                 Timber.e(e, "doInBackgroundAddNote - RuntimeException on adding note");
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundAddNote");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundAddNote");
                 return false;
             }
             return true;
@@ -330,7 +329,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
                 });
             } catch (RuntimeException e) {
                 Timber.e(e, "doInBackgroundUpdateNote - RuntimeException on updating note");
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundUpdateNote");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundUpdateNote");
                 return False;
             }
             return True;
@@ -541,7 +540,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
                 });
             } catch (RuntimeException e) {
                 Timber.e(e, "doInBackgroundDismissNote - RuntimeException on dismissing note, dismiss type %s", type);
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundDismissNote");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundDismissNote");
                 return False;
             }
             return True;
@@ -727,7 +726,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
                 }
             } catch (RuntimeException e) {
                 Timber.e(e, "doInBackgroundSuspendCard - RuntimeException on suspending card");
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundSuspendCard");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundSuspendCard");
                 return new PairWithBoolean<>(false, null);
             }
             // pass cards back so more actions can be performed by the caller
@@ -1020,7 +1019,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
                 });
             } catch (RuntimeException e) {
                 Timber.e(e, "doInBackgroundUndo - RuntimeException on undoing");
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundUndo");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundUndo");
                 return False;
             }
             return True;
@@ -1208,7 +1207,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
             return new Pair<>(false, null);
         }
 
-        Collection.CheckDatabaseResult result = col.fixIntegrity(new TaskManager.ProgressCallback(collectionTask, AnkiDroidApp.getAppResources()));
+        Collection.CheckDatabaseResult result = col.fixIntegrity(new TaskManager.ProgressCallback(collectionTask, LowkeyAnkiDroidApp.getAppResources()));
         if (result.getFailed()) {
             //we can fail due to a locked database, which requires knowledge of the failure.
             return new Pair<>(false, result);
@@ -1307,7 +1306,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
 
         protected Triple<AnkiPackageImporter, Boolean, String> task(Collection col, ProgressSenderAndCancelListener<String> collectionTask) {
             Timber.d("doInBackgroundImportAdd");
-            Resources res = AnkiDroidApp.getInstance().getBaseContext().getResources();
+            Resources res = LowkeyAnkiDroidApp.getInstance().getBaseContext().getResources();
             AnkiPackageImporter imp = new AnkiPackageImporter(col, path);
             imp.setProgressCallback(new TaskManager.ProgressCallback(collectionTask, res));
             try {
@@ -1331,7 +1330,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
 
         protected BooleanGetter task(Collection col, ProgressSenderAndCancelListener<String> collectionTask) {
             Timber.d("doInBackgroundImportReplace");
-            Resources res = AnkiDroidApp.getInstance().getBaseContext().getResources();
+            Resources res = LowkeyAnkiDroidApp.getInstance().getBaseContext().getResources();
             Context context = col.getContext();
 
             // extract the deck from the zip file
@@ -1348,7 +1347,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
                 zip = new ZipFile(new File(path));
             } catch (IOException e) {
                 Timber.e(e, "doInBackgroundImportReplace - Error while unzipping");
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace0");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace0");
                 return False;
             }
             try {
@@ -1358,7 +1357,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
                 }
                 Utils.unzipFiles(zip, dir.getAbsolutePath(), new String[] {colname, "media"}, null);
             } catch (IOException e) {
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace - unzip");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace - unzip");
                 return False;
             }
             String colFile = new File(dir, colname).getAbsolutePath();
@@ -1380,7 +1379,7 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
                 } catch (Exception e2) {
                     // do nothing
                 }
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace - open col");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace - open col");
                 return False;
             } finally {
                 if (tmpCol != null) {
@@ -1449,15 +1448,15 @@ public class CollectionTask<ProgressListener, ProgressBackground extends Progres
                 return True;
             } catch (RuntimeException e) {
                 Timber.e(e, "doInBackgroundImportReplace - RuntimeException");
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace1");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace1");
                 return False;
             } catch (FileNotFoundException e) {
                 Timber.e(e, "doInBackgroundImportReplace - FileNotFoundException");
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace2");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace2");
                 return False;
             } catch (IOException e) {
                 Timber.e(e, "doInBackgroundImportReplace - IOException");
-                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace3");
+                LowkeyAnkiDroidApp.sendExceptionReport(e, "doInBackgroundImportReplace3");
                 return False;
             }
         }

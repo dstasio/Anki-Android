@@ -23,7 +23,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.ichi2.anki.NavigationDrawerActivity;
+import com.ichi2.lowanki.NavigationDrawerActivity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;

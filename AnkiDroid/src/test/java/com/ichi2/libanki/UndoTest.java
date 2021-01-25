@@ -1,6 +1,6 @@
 package com.ichi2.libanki;
 
-import com.ichi2.anki.RobolectricTest;
+import com.ichi2.lowanki.RobolectricTest;
 import com.ichi2.libanki.sched.Counts;
 
 import org.junit.Ignore;

@@ -19,10 +19,10 @@ package com.ichi2.libanki.sync;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.util.Pair;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.R;
-import com.ichi2.anki.exception.UnknownHttpResponseException;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.exception.UnknownHttpResponseException;
 import com.ichi2.async.Connection;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.DB;
@@ -88,7 +88,7 @@ public class FullSyncer extends HttpSyncer {
         } else {
             // Allow for case where collection is completely unreadable
             Timber.w("Collection was unexpectedly null when doing full sync download");
-            path = CollectionHelper.getCollectionPath(AnkiDroidApp.getInstance());
+            path = CollectionHelper.getCollectionPath(LowkeyAnkiDroidApp.getInstance());
         }
         String tpath = path + ".tmp";
         try {

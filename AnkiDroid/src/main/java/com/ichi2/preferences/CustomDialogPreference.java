@@ -22,9 +22,9 @@ import android.content.SharedPreferences.Editor;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.MetaDB;
-import com.ichi2.anki.R;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.MetaDB;
+import com.ichi2.lowanki.R;
 
 @SuppressWarnings("deprecation") // TODO Tracked in https://github.com/ankidroid/Anki-Android/issues/5019
 public class CustomDialogPreference extends android.preference.DialogPreference implements DialogInterface.OnClickListener {
@@ -41,24 +41,24 @@ public class CustomDialogPreference extends android.preference.DialogPreference 
         if (which == DialogInterface.BUTTON_POSITIVE) {
             if (this.getTitle().equals(mContext.getResources().getString(R.string.deck_conf_reset))) {
                 // Deck Options :: Restore Defaults for Options Group
-                Editor editor = AnkiDroidApp.getSharedPrefs(mContext).edit();
+                Editor editor = LowkeyAnkiDroidApp.getSharedPrefs(mContext).edit();
                 editor.putBoolean("confReset", true);
                 editor.commit();
             } else if (this.getTitle().equals(mContext.getResources().getString(R.string.dialog_positive_remove))) {
                 // Deck Options :: Remove Options Group
-                Editor editor = AnkiDroidApp.getSharedPrefs(mContext).edit();
+                Editor editor = LowkeyAnkiDroidApp.getSharedPrefs(mContext).edit();
                 editor.putBoolean("confRemove", true);
                 editor.commit();
             } else if (this.getTitle().equals(mContext.getResources().getString(R.string.deck_conf_set_subdecks))) {
                 // Deck Options :: Set Options Group for all Sub-decks
-                Editor editor = AnkiDroidApp.getSharedPrefs(mContext).edit();
+                Editor editor = LowkeyAnkiDroidApp.getSharedPrefs(mContext).edit();
                 editor.putBoolean("confSetSubdecks", true);
                 editor.commit();
             } else {
                 // Main Preferences :: Reset Languages
                 if (MetaDB.resetLanguages(mContext)) {
                     Toast successReport = Toast.makeText(this.getContext(),
-                            AnkiDroidApp.getAppResources().getString(R.string.reset_confirmation), Toast.LENGTH_SHORT);
+                            LowkeyAnkiDroidApp.getAppResources().getString(R.string.reset_confirmation), Toast.LENGTH_SHORT);
                     successReport.show();
                 }
             }

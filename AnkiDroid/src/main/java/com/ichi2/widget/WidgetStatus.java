@@ -22,10 +22,10 @@ import android.util.Pair;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.MetaDB;
-import com.ichi2.anki.services.NotificationService;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.CollectionHelper;
+import com.ichi2.lowanki.MetaDB;
+import com.ichi2.lowanki.services.NotificationService;
 import com.ichi2.async.BaseAsyncTask;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.sched.Counts;
@@ -56,7 +56,7 @@ public final class WidgetStatus {
      *             https://developer.android.com/guide/topics/appwidgets/#MetaData
      */
     public static void update(Context context) {
-        SharedPreferences preferences = AnkiDroidApp.getSharedPrefs(context);
+        SharedPreferences preferences = LowkeyAnkiDroidApp.getSharedPrefs(context);
         sSmallWidgetEnabled = preferences.getBoolean("widgetSmallEnabled", false);
         boolean notificationEnabled = Integer.parseInt(preferences.getString("minimumCardsDueForNotification", "1000001")) < 1000000;
         boolean canExecuteTask = ((sUpdateDeckStatusAsyncTask == null) || (sUpdateDeckStatusAsyncTask.getStatus() == AsyncTask.Status.FINISHED));
@@ -91,7 +91,7 @@ public final class WidgetStatus {
             super.doInBackground(params);
             Timber.d("WidgetStatus.UpdateDeckStatusAsyncTask.doInBackground()");
             Context context = params[0];
-            if (!AnkiDroidApp.isSdCardMounted()) {
+            if (!LowkeyAnkiDroidApp.isSdCardMounted()) {
                 return context;
             }
             try {

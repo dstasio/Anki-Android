@@ -29,7 +29,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 
-import com.ichi2.anki.AnkiDroidApp;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 
 import java.util.List;
 import java.util.Locale;
@@ -64,7 +64,7 @@ public class AdaptionUtil {
 
     public static boolean isRunningUnderFirebaseTestLab() {
         try {
-            return isRunningUnderFirebaseTestLab(AnkiDroidApp.getInstance().getContentResolver());
+            return isRunningUnderFirebaseTestLab(LowkeyAnkiDroidApp.getInstance().getContentResolver());
         } catch (Exception e) {
             return false;
         }
@@ -152,7 +152,7 @@ public class AdaptionUtil {
     }
 
     private static boolean queryIsMiui() {
-        Context ctx = AnkiDroidApp.getInstance();
+        Context ctx = LowkeyAnkiDroidApp.getInstance();
         return isIntentResolved(ctx, new Intent("miui.intent.action.OP_AUTO_START").addCategory(Intent.CATEGORY_DEFAULT))
                 || isIntentResolved(ctx, new Intent().setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity")))
                 || isIntentResolved(ctx, new Intent("miui.intent.action.POWER_HIDE_MODE_APP_LIST").addCategory(Intent.CATEGORY_DEFAULT))

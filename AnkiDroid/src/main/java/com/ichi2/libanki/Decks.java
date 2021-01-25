@@ -24,9 +24,9 @@ package com.ichi2.libanki;
 import android.content.ContentValues;
 import android.text.TextUtils;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.exception.ConfirmModSchemaException;
-import com.ichi2.anki.exception.DeckRenameException;
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
+import com.ichi2.lowanki.exception.ConfirmModSchemaException;
+import com.ichi2.lowanki.exception.DeckRenameException;
 import com.ichi2.libanki.exception.NoSuchDeckException;
 
 import com.ichi2.utils.DeckComparator;
@@ -44,7 +44,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
@@ -178,7 +177,7 @@ public class Decks {
             }
             String foundName = deck.getString("name");
             if (!equalName(name, foundName)) {
-                AnkiDroidApp.sendExceptionReport("We looked for deck \"" + name + "\" and instead got deck \"" + foundName + "\".", "Decks - byName");
+                LowkeyAnkiDroidApp.sendExceptionReport("We looked for deck \"" + name + "\" and instead got deck \"" + foundName + "\".", "Decks - byName");
             }
             return deck;
         }

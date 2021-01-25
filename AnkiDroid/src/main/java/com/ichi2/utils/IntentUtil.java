@@ -20,9 +20,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
-import com.ichi2.anki.AnkiActivity;
-import com.ichi2.anki.R;
-import com.ichi2.anki.UIUtils;
+import com.ichi2.lowanki.AnkiActivity;
+import com.ichi2.lowanki.R;
+import com.ichi2.lowanki.UIUtils;
 
 public class IntentUtil {
     public static boolean canOpenIntent(Context context, Intent intent) {
