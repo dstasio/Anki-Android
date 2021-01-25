@@ -281,16 +281,16 @@ public class AbstractFlashcardViewerTest extends RobolectricTest {
         String url = "signal:answer_ease2";
         assertEquals(ANSWER_ORDINAL_2, getSignalFromUrl(url));
     }
-    @Test
-    public void ease3IsParsedFromSignal() {
-        String url = "signal:answer_ease3";
-        assertEquals(ANSWER_ORDINAL_3, getSignalFromUrl(url));
-    }
-    @Test
-    public void ease4IsParsedFromSignal() {
-        String url = "signal:answer_ease4";
-        assertEquals(ANSWER_ORDINAL_4, getSignalFromUrl(url));
-    }
+    //@Test
+    //public void ease3IsParsedFromSignal() {
+    //    String url = "signal:answer_ease3";
+    //    assertEquals(ANSWER_ORDINAL_3, getSignalFromUrl(url));
+    //}
+    //@Test
+    //public void ease4IsParsedFromSignal() {
+    //    String url = "signal:answer_ease4";
+    //    assertEquals(ANSWER_ORDINAL_4, getSignalFromUrl(url));
+    //}
 
     @Test
     public void invalidEaseIsParsedFromSignal() {
