@@ -764,7 +764,7 @@ public class Sched extends SchedV2 {
         if (_resched(card)) {
             card.setLapses(card.getLapses() + 1);
             card.setIvl(_nextLapseIvl(card, conf));
-            card.setFactor(Math.max(1300, card.getFactor() - 200));
+            //card.setFactor(Math.max(1300, card.getFactor() - 200));
             card.setDue(mToday + card.getIvl());
             // if it's a filtered deck, update odue as well
             if (card.isInDynamicDeck()) {
@@ -813,7 +813,9 @@ public class Sched extends SchedV2 {
         if (_resched(card)) {
             _updateRevIvl(card, ease);
             // then the rest
-            card.setFactor(Math.max(1300, card.getFactor() + FACTOR_ADDITION_VALUES[ease - 2]));
+
+            // @note: this has not been tested
+            //card.setFactor(Math.max(1300, card.getFactor() + FACTOR_ADDITION_VALUES[ease - 2]));
             card.setDue(mToday + card.getIvl());
         } else {
             card.setDue(card.getODue());
