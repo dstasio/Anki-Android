@@ -31,6 +31,7 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Pair;
 
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 import com.ichi2.lowanki.R;
 import com.ichi2.async.CancelListener;
 import com.ichi2.async.CollectionTask;
@@ -1682,7 +1683,9 @@ public class SchedV2 extends AbstractSched {
         JSONObject conf = _lapseConf(card);
         card.setLapses(card.getLapses() + 1);
         // @note: not tested
-        //card.setFactor(Math.max(1300, card.getFactor() - 200));
+        if (!LowkeyAnkiDroidApp.getSharedPrefs(mCol.getContext()).getBoolean("no_boost_penalties", false)) {
+            card.setFactor(Math.max(1300, card.getFactor() - 200));
+        }
         int delay;
          boolean suspended = _checkLeech(card, conf) && card.getQueue() == Consts.QUEUE_TYPE_SUSPENDED;
         if (conf.getJSONArray("delays").length() != 0 && !suspended) {
@@ -1719,7 +1722,9 @@ public class SchedV2 extends AbstractSched {
 
         // then the rest
         // @note: not tested
-        //card.setFactor(Math.max(1300, card.getFactor() + FACTOR_ADDITION_VALUES[ease - 2]));
+        if (!LowkeyAnkiDroidApp.getSharedPrefs(mCol.getContext()).getBoolean("no_boost_penalties", false)) {
+            card.setFactor(Math.max(1300, card.getFactor() + FACTOR_ADDITION_VALUES[ease - 2]));
+        }
         card.setDue(mToday + card.getIvl());
 
         // card leaves filtered deck

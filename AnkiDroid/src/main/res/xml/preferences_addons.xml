@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2021 Davide Stasio <davide.stasio@gmail.com>
+~
+~ This program is free software; you can redistribute it and/or modify it under
+~ the terms of the GNU General Public License as published by the Free Software
+~ Foundation; either version 3 of the License, or (at your option) any later
+~ version.
+~
+~ This program is distributed in the hope that it will be useful, but WITHOUT ANY
+~ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+~ PARTICULAR PURPOSE. See the GNU General Public License for more details.
+~
+~ You should have received a copy of the GNU General Public License along with
+~ this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!-- Extras Preferences -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://arbitrary.app.namespace/com.ichi2.lowanki"
+    android:title="@string/pref_cat_addons"
+    android:summary="@string/pref_cat_addons_summ" >
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:disableDependentsState="false"
+        android:key="two_button_mode"
+        android:summary="@string/addons_two_button_mode_summ"
+        android:title="@string/addons_two_button_mode" />
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:disableDependentsState="false"
+        android:key="no_boost_penalties"
+        android:summary="@string/addons_no_boost_penalties_summ"
+        android:title="@string/addons_no_boost_penalties" />
+        <!-- android:dependency="gestures" -->
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:disableDependentsState="false"
+        android:key="load_balancer"
+        android:summary="@string/addons_load_balancer_summ"
+        android:title="@string/addons_load_balancer" />
+        <!-- android:dependency="gestures" -->
+</PreferenceScreen>

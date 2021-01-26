@@ -19,6 +19,7 @@
 package com.ichi2.libanki.sched;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.text.TextUtils;
@@ -33,6 +34,7 @@ import com.ichi2.libanki.Utils;
 import com.ichi2.libanki.Deck;
 import com.ichi2.libanki.DeckConfig;
 
+import com.ichi2.lowanki.LowkeyAnkiDroidApp;
 import com.ichi2.utils.Assert;
 import com.ichi2.utils.JSONArray;
 import com.ichi2.utils.JSONException;
@@ -764,7 +766,10 @@ public class Sched extends SchedV2 {
         if (_resched(card)) {
             card.setLapses(card.getLapses() + 1);
             card.setIvl(_nextLapseIvl(card, conf));
-            //card.setFactor(Math.max(1300, card.getFactor() - 200));
+            ;
+            if (!LowkeyAnkiDroidApp.getSharedPrefs(mCol.getContext()).getBoolean("no_boost_penalties", false)) {
+                card.setFactor(Math.max(1300, card.getFactor() - 200));
+            }
             card.setDue(mToday + card.getIvl());
             // if it's a filtered deck, update odue as well
             if (card.isInDynamicDeck()) {
@@ -814,8 +819,10 @@ public class Sched extends SchedV2 {
             _updateRevIvl(card, ease);
             // then the rest
 
-            // @note: this has not been tested
-            //card.setFactor(Math.max(1300, card.getFactor() + FACTOR_ADDITION_VALUES[ease - 2]));
+            // @todo: this has not been tested
+            if (!LowkeyAnkiDroidApp.getSharedPrefs(mCol.getContext()).getBoolean("no_boost_penalties", false)) {
+                card.setFactor(Math.max(1300, card.getFactor() + FACTOR_ADDITION_VALUES[ease - 2]));
+            }
             card.setDue(mToday + card.getIvl());
         } else {
             card.setDue(card.getODue());
