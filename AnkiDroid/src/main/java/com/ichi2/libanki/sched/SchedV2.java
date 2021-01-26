@@ -1695,34 +1695,56 @@ public class SchedV2 extends AbstractSched {
             return ivl3;
         }
 
-        return _constrainedIvl((
-                                    (card.getIvl() + delay) * fct * conf.getDouble("ease4")), conf, ivl3, fuzz);
+        return _constrainedIvl(((card.getIvl() + delay) * fct * conf.getDouble("ease4")), conf, ivl3, fuzz);
     }
 
     public int _fuzzedIvl(int ivl) {
+        int result = ivl;
         Pair<Integer, Integer> minMax = _fuzzIvlRange(ivl);
-        // Anki's python uses random.randint(a, b) which returns x in [a, b] while the eq Random().nextInt(a, b)
-        // returns x in [0, b-a), hence the +1 diff with libanki
-        return (new Random().nextInt(minMax.second - minMax.first + 1)) + minMax.first;
+
+        if ((minMax.second - minMax.first) != 0)
+        {
+            int least_count         = Integer.MAX_VALUE;
+            int ivl_of_least_count  = ivl;
+            for (int test_ivl = minMax.first; (test_ivl <= minMax.second) && (least_count != 0); ++test_ivl)
+            {
+                int test_count = mCol.getDb().queryScalar("SELECT count() FROM (SELECT id FROM cards WHERE queue = " + Consts.QUEUE_TYPE_REV + " AND due == ?)", mToday + test_ivl);
+                if (test_count < least_count)
+                {
+                    ivl_of_least_count = test_ivl;
+                    least_count        = test_count;
+                }
+            }
+
+            if (false) {
+                // Anki's python uses random.randint(a, b) which returns x in [a, b] while the eq Random().nextInt(a, b)
+                // returns x in [0, b-a), hence the +1 diff with libanki
+                result = (new Random().nextInt(minMax.second - minMax.first + 1)) + minMax.first;
+            }
+            else
+            {
+                result = ivl_of_least_count;
+            }
+        }
+
+        return result;
     }
 
 
     public @NonNull Pair<Integer, Integer> _fuzzIvlRange(int ivl) {
+
         int fuzz;
-        if (ivl < 2) {
-            return new Pair<>(1, 1);
-        } else if (ivl == 2) {
-            return new Pair<>(2, 3);
+        if (ivl <= 2) {
+            fuzz = 0;
         } else if (ivl < 7) {
-            fuzz = (int)(ivl * 0.25);
+            fuzz = (int)(ivl * 0.15);
         } else if (ivl < 30) {
             fuzz = Math.max(2, (int)(ivl * 0.15));
         } else {
-            fuzz = Math.max(4, (int)(ivl * 0.05));
+            fuzz = 4;
         }
-        // fuzz at least a day
-        fuzz = Math.max(fuzz, 1);
-        return new Pair<>(ivl - fuzz, ivl + fuzz);
+
+        return new Pair<Integer, Integer>(ivl - fuzz, ivl + fuzz);
     }
 
 
