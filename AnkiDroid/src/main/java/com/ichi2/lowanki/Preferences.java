@@ -417,6 +417,11 @@ public class Preferences extends AppCompatPreferenceActivity implements Preferen
                 removeUnnecessaryAdvancedPrefs(screen);
                 addThirdPartyAppsListener(screen);
                 break;
+            case "com.ichi2.lowanki.prefs.addons":
+                listener.addPreferencesFromResource(R.xml.preferences_addons);
+                screen = listener.getPreferenceScreen();
+
+                break;
             case "com.ichi2.lowanki.prefs.custom_sync_server":
                 getSupportActionBar().setTitle(R.string.custom_sync_server_title);
                 listener.addPreferencesFromResource(R.xml.preferences_custom_sync_server);

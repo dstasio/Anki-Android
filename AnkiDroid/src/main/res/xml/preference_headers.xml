@@ -71,4 +71,15 @@
             android:name="subscreen"
             android:value="com.ichi2.lowanki.prefs.advanced" />
     </header>
+
+    <!-- Extras Preferences -->
+    <header
+        android:fragment="com.ichi2.lowanki.Preferences$SettingsFragment"
+        android:key="pref_screen_addons"
+        android:summary="@string/pref_cat_addons_summ"
+        android:title="@string/pref_cat_addons">
+        <extra
+            android:name="subscreen"
+            android:value="com.ichi2.lowanki.prefs.addons" />
+    </header>
 </preference-headers>
