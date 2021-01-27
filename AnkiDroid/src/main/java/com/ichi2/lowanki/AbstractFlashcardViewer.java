@@ -264,6 +264,8 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     private boolean mInAnswer = false;
     private boolean mAnswerSoundsAdded = false;
 
+    protected boolean mTwoButtonMode = false;
+
     private String mCardTemplate;
 
     /**
@@ -276,19 +278,19 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     private TextView mChosenAnswer;
     protected TextView mNext1;
     protected TextView mNext2;
-    //protected TextView mNext3;
-    //protected TextView mNext4;
+    protected TextView mNext3;
+    protected TextView mNext4;
     protected EditText mAnswerField;
     protected TextView mEase1;
     protected TextView mEase2;
-    //protected TextView mEase3;
-    //protected TextView mEase4;
+    protected TextView mEase3;
+    protected TextView mEase4;
     protected LinearLayout mFlipCardLayout;
     protected LinearLayout mEaseButtonsLayout;
     protected LinearLayout mEase1Layout;
     protected LinearLayout mEase2Layout;
-    //protected LinearLayout mEase3Layout;
-    //protected LinearLayout mEase4Layout;
+    protected LinearLayout mEase3Layout;
+    protected LinearLayout mEase4Layout;
     protected FrameLayout mPreviewButtonsLayout;
     protected ImageView mPreviewPrevCard;
     protected ImageView mPreviewNextCard;
@@ -440,12 +442,12 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
             } else if (id == R.id.flashcard_layout_ease2) {
                 Timber.i("AbstractFlashcardViewer:: EASE_2 pressed");
                 answerCard(Consts.BUTTON_TWO);
-            //} else if (id == R.id.flashcard_layout_ease3) {
-            //    Timber.i("AbstractFlashcardViewer:: EASE_3 pressed");
-            //    answerCard(Consts.BUTTON_THREE);
-            //} else if (id == R.id.flashcard_layout_ease4) {
-            //    Timber.i("AbstractFlashcardViewer:: EASE_4 pressed");
-            //    answerCard(Consts.BUTTON_FOUR);
+            } else if (id == R.id.flashcard_layout_ease3) {
+                Timber.i("AbstractFlashcardViewer:: EASE_3 pressed");
+                answerCard(Consts.BUTTON_THREE);
+            } else if (id == R.id.flashcard_layout_ease4) {
+                Timber.i("AbstractFlashcardViewer:: EASE_4 pressed");
+                answerCard(Consts.BUTTON_FOUR);
             } else {
                 mCurrentEase = 0;
             }
@@ -1469,24 +1471,24 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         mEase2Layout = findViewById(R.id.flashcard_layout_ease2);
         mEase2Layout.setOnClickListener(mSelectEaseHandler);
 
-        //mEase3 = findViewById(R.id.ease3);
-        //mEase3Layout = findViewById(R.id.flashcard_layout_ease3);
-        //mEase3Layout.setOnClickListener(mSelectEaseHandler);
+        mEase3 = findViewById(R.id.ease3);
+        mEase3Layout = findViewById(R.id.flashcard_layout_ease3);
+        mEase3Layout.setOnClickListener(mSelectEaseHandler);
 
-        //mEase4 = findViewById(R.id.ease4);
-        //mEase4Layout = findViewById(R.id.flashcard_layout_ease4);
-        //mEase4Layout.setOnClickListener(mSelectEaseHandler);
+        mEase4 = findViewById(R.id.ease4);
+        mEase4Layout = findViewById(R.id.flashcard_layout_ease4);
+        mEase4Layout.setOnClickListener(mSelectEaseHandler);
 
         mNext1 = findViewById(R.id.nextTime1);
         mNext2 = findViewById(R.id.nextTime2);
-        //mNext3 = findViewById(R.id.nextTime3);
-        //mNext4 = findViewById(R.id.nextTime4);
+        mNext3 = findViewById(R.id.nextTime3);
+        mNext4 = findViewById(R.id.nextTime4);
 
         if (!mShowNextReviewTime) {
             mNext1.setVisibility(View.GONE);
             mNext2.setVisibility(View.GONE);
-            //mNext3.setVisibility(View.GONE);
-            //mNext4.setVisibility(View.GONE);
+            mNext3.setVisibility(View.GONE);
+            mNext4.setVisibility(View.GONE);
         }
 
         Button mFlipCard = findViewById(R.id.flip_card);
@@ -1500,14 +1502,20 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         if (!mButtonHeightSet && mRelativeButtonSize != 100) {
             ViewGroup.LayoutParams params = mFlipCardLayout.getLayoutParams();
             params.height = params.height * mRelativeButtonSize / 100;
+
             params = mEase1Layout.getLayoutParams();
             params.height = params.height * mRelativeButtonSize / 100;
-            params = mEase2Layout.getLayoutParams();
+
+            params = mEase3Layout.getLayoutParams();
             params.height = params.height * mRelativeButtonSize / 100;
-            //params = mEase3Layout.getLayoutParams();
-            //params.height = params.height * mRelativeButtonSize / 100;
-            //params = mEase4Layout.getLayoutParams();
-            //params.height = params.height * mRelativeButtonSize / 100;
+
+            if (!mTwoButtonMode) {
+                params = mEase2Layout.getLayoutParams();
+                params.height = params.height * mRelativeButtonSize / 100;
+
+                params = mEase4Layout.getLayoutParams();
+                params.height = params.height * mRelativeButtonSize / 100;
+            }
             mButtonHeightSet = true;
         }
 
@@ -1690,12 +1698,12 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         mEaseButtonsLayout.setVisibility(View.GONE);
         mEase1Layout.setVisibility(View.GONE);
         mEase2Layout.setVisibility(View.GONE);
-        //mEase3Layout.setVisibility(View.GONE);
-        //mEase4Layout.setVisibility(View.GONE);
+        mEase3Layout.setVisibility(View.GONE);
+        mEase4Layout.setVisibility(View.GONE);
         mNext1.setText("");
         mNext2.setText("");
-        //mNext3.setText("");
-        //mNext4.setText("");
+        mNext3.setText("");
+        mNext4.setText("");
     }
 
 
@@ -1780,6 +1788,8 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         if (preferences.getBoolean("keepScreenOn", false)) {
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
+
+        mTwoButtonMode = preferences.getBoolean("two_button_mode", false);
 
         return preferences;
     }
@@ -2400,37 +2410,47 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         switch (mCurrentEase) {
             case EASE_1:
                 mEase1Layout.setClickable(true);
-                mEase2Layout.setEnabled(true);
-                //mEase3Layout.setEnabled(true);
-                //mEase4Layout.setEnabled(true);
+                mEase3Layout.setEnabled(true);
+                if (!mTwoButtonMode) {
+                    mEase2Layout.setEnabled(true);
+                    mEase4Layout.setEnabled(true);
+                }
                 break;
 
             case EASE_2:
                 mEase1Layout.setEnabled(true);
-                mEase2Layout.setClickable(true);
-                //mEase3Layout.setEnabled(true);
-                //mEase4Layout.setEnabled(true);
+                mEase3Layout.setEnabled(true);
+                if (!mTwoButtonMode) {
+                    mEase2Layout.setClickable(true);
+                    mEase4Layout.setEnabled(true);
+                }
                 break;
 
-            //case EASE_3:
-            //    mEase1Layout.setEnabled(true);
-            //    mEase2Layout.setEnabled(true);
-            //    //mEase3Layout.setClickable(true);
-            //    //mEase4Layout.setEnabled(true);
-            //    break;
+            case EASE_3:
+                mEase1Layout.setEnabled(true);
+                mEase3Layout.setClickable(true);
+                if (!mTwoButtonMode) {
+                    mEase2Layout.setEnabled(true);
+                    mEase4Layout.setEnabled(true);
+                }
+                break;
 
-            //case EASE_4:
-            //    mEase1Layout.setEnabled(true);
-            //    mEase2Layout.setEnabled(true);
-            //    //mEase3Layout.setEnabled(true);
-            //    //mEase4Layout.setClickable(true);
-            //    break;
+            case EASE_4:
+                mEase1Layout.setEnabled(true);
+                mEase3Layout.setEnabled(true);
+                if (!mTwoButtonMode) {
+                    mEase2Layout.setEnabled(true);
+                    mEase4Layout.setClickable(true);
+                }
+                break;
 
             default:
                 mEase1Layout.setEnabled(true);
-                mEase2Layout.setEnabled(true);
-                //mEase3Layout.setEnabled(true);
-                //mEase4Layout.setEnabled(true);
+                mEase3Layout.setEnabled(true);
+                if (!mTwoButtonMode) {
+                    mEase2Layout.setEnabled(true);
+                    mEase4Layout.setEnabled(true);
+                }
                 break;
         }
 
@@ -2465,37 +2485,47 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         switch (mCurrentEase) {
             case EASE_1:
                 mEase1Layout.setClickable(false);
-                mEase2Layout.setEnabled(false);
-                //mEase3Layout.setEnabled(false);
-                //mEase4Layout.setEnabled(false);
+                mEase3Layout.setEnabled(false);
+                if (!mTwoButtonMode) {
+                    mEase2Layout.setEnabled(false);
+                    mEase4Layout.setEnabled(false);
+                }
                 break;
 
             case EASE_2:
                 mEase1Layout.setEnabled(false);
-                mEase2Layout.setClickable(false);
-                //mEase3Layout.setEnabled(false);
-                //mEase4Layout.setEnabled(false);
+                mEase3Layout.setEnabled(false);
+                if (!mTwoButtonMode) {
+                    mEase2Layout.setClickable(false);
+                    mEase4Layout.setEnabled(false);
+                }
                 break;
 
             case EASE_3:
                 mEase1Layout.setEnabled(false);
-                mEase2Layout.setEnabled(false);
-                //mEase3Layout.setClickable(false);
-                //mEase4Layout.setEnabled(false);
+                mEase3Layout.setClickable(false);
+                if (!mTwoButtonMode) {
+                    mEase2Layout.setEnabled(false);
+                    mEase4Layout.setEnabled(false);
+                }
                 break;
 
             case EASE_4:
                 mEase1Layout.setEnabled(false);
-                mEase2Layout.setEnabled(false);
-                //mEase3Layout.setEnabled(false);
-                //mEase4Layout.setClickable(false);
+                mEase3Layout.setEnabled(false);
+                if (!mTwoButtonMode) {
+                    mEase2Layout.setEnabled(false);
+                    mEase4Layout.setClickable(false);
+                }
                 break;
 
             default:
                 mEase1Layout.setEnabled(false);
-                mEase2Layout.setEnabled(false);
-                //mEase3Layout.setEnabled(false);
-                //mEase4Layout.setEnabled(false);
+                mEase3Layout.setEnabled(false);
+                if (!mTwoButtonMode) {
+                    mEase2Layout.setEnabled(false);
+                    mEase4Layout.setEnabled(false);
+                }
                 break;
         }
 
@@ -2725,13 +2755,15 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
                 performClickWithVisualFeedback(mEase1Layout);
                 break;
             case EASE_2:
-                performClickWithVisualFeedback(mEase2Layout);
+                if (!mTwoButtonMode)
+                    performClickWithVisualFeedback(mEase2Layout);
                 break;
             case EASE_3:
-                //performClickWithVisualFeedback(mEase3Layout);
+                performClickWithVisualFeedback(mEase3Layout);
                 break;
             case EASE_4:
-                //performClickWithVisualFeedback(mEase4Layout);
+                if (!mTwoButtonMode)
+                    performClickWithVisualFeedback(mEase4Layout);
                 break;
         }
     }

@@ -1,0 +1,3 @@
+Editable fuzziness intervals
+Some kind of signal to recognize, while reviewing, if noboost is enabled
+Translations

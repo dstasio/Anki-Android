@@ -775,7 +775,10 @@ public class Reviewer extends AbstractFlashcardViewer {
         super.displayAnswerBottomBar();
         int buttonCount;
         try {
-            buttonCount = mSched.answerButtons(mCurrentCard);
+            if (mTwoButtonMode)
+                buttonCount = 2;
+            else
+                buttonCount = mSched.answerButtons(mCurrentCard);
         } catch (RuntimeException e) {
             LowkeyAnkiDroidApp.sendExceptionReport(e, "AbstractReviewer-showEaseButtons");
             closeReviewer(DeckPicker.RESULT_DB_ERROR, true);
@@ -807,64 +810,71 @@ public class Reviewer extends AbstractFlashcardViewer {
                 R.attr.easyButtonTextColor});
         mEase1Layout.setVisibility(View.VISIBLE);
         mEase1Layout.setBackgroundResource(background[0]);
-        //mEase4Layout.setBackgroundResource(background[3]);
+        mEase4Layout.setBackgroundResource(background[3]);
+
         switch (buttonCount) {
             case 2:
-            case 3:
-            default:
                 // Ease 2 is "good"
+                mEase2Layout.setVisibility(View.VISIBLE);
+                mEase2Layout.setBackgroundResource(background[2]);
+                mEase2.setTextColor(textColor[2]);
+                mNext2.setTextColor(textColor[2]);
+                mEase2Layout.requestFocus();
+
+                if (mTwoButtonMode) {
+                    mEase1.setText(R.string.ease_button_fail);
+                    mEase2.setText(R.string.ease_button_pass);
+                }
+                else {
+                    mEase1.setText(R.string.ease_button_again);
+                    mEase2.setText(R.string.ease_button_good);
+                }
+                break;
+            case 3:
+                // Ease 2 is good
                 mEase2Layout.setVisibility(View.VISIBLE);
                 mEase2Layout.setBackgroundResource(background[2]);
                 mEase2.setText(R.string.ease_button_good);
                 mEase2.setTextColor(textColor[2]);
                 mNext2.setTextColor(textColor[2]);
+                // Ease 3 is easy
+                mEase3Layout.setVisibility(View.VISIBLE);
+                mEase3Layout.setBackgroundResource(background[3]);
+                mEase3.setText(R.string.ease_button_easy);
+                mEase3.setTextColor(textColor[3]);
+                mNext3.setTextColor(textColor[3]);
                 mEase2Layout.requestFocus();
                 break;
-            //case 3:
-            //    // Ease 2 is good
-            //    mEase2Layout.setVisibility(View.VISIBLE);
-            //    mEase2Layout.setBackgroundResource(background[2]);
-            //    mEase2.setText(R.string.ease_button_good);
-            //    mEase2.setTextColor(textColor[2]);
-            //    mNext2.setTextColor(textColor[2]);
-            //    // Ease 3 is easy
-            //    mEase3Layout.setVisibility(View.VISIBLE);
-            //    mEase3Layout.setBackgroundResource(background[3]);
-            //    mEase3.setText(R.string.ease_button_easy);
-            //    mEase3.setTextColor(textColor[3]);
-            //    mNext3.setTextColor(textColor[3]);
-            //    mEase2Layout.requestFocus();
-            //    break;
-            //default:
-            //    mEase2Layout.setVisibility(View.VISIBLE);
-            //    // Ease 2 is "hard"
-            //    mEase2Layout.setVisibility(View.VISIBLE);
-            //    mEase2Layout.setBackgroundResource(background[1]);
-            //    mEase2.setText(R.string.ease_button_hard);
-            //    mEase2.setTextColor(textColor[1]);
-            //    mNext2.setTextColor(textColor[1]);
-            //    mEase2Layout.requestFocus();
-            //    // Ease 3 is good
-            //    mEase3Layout.setVisibility(View.VISIBLE);
-            //    mEase3Layout.setBackgroundResource(background[2]);
-            //    mEase3.setText(R.string.ease_button_good);
-            //    mEase3.setTextColor(textColor[2]);
-            //    mNext3.setTextColor(textColor[2]);
-            //    mEase4Layout.setVisibility(View.VISIBLE);
-            //    mEase3Layout.requestFocus();
-            //    break;
+            default:
+                mEase2Layout.setVisibility(View.VISIBLE);
+                // Ease 2 is "hard"
+                mEase2Layout.setVisibility(View.VISIBLE);
+                mEase2Layout.setBackgroundResource(background[1]);
+                mEase2.setText(R.string.ease_button_hard);
+                mEase2.setTextColor(textColor[1]);
+                mNext2.setTextColor(textColor[1]);
+                mEase2Layout.requestFocus();
+                // Ease 3 is good
+                mEase3Layout.setVisibility(View.VISIBLE);
+                mEase3Layout.setBackgroundResource(background[2]);
+                mEase3.setText(R.string.ease_button_good);
+                mEase3.setTextColor(textColor[2]);
+                mNext3.setTextColor(textColor[2]);
+                mEase4Layout.setVisibility(View.VISIBLE);
+                mEase3Layout.requestFocus();
+                break;
         }
 
         // Show next review time
         if (shouldShowNextReviewTime()) {
             mNext1.setText(mSched.nextIvlStr(this, mCurrentCard, Consts.BUTTON_ONE));
             mNext2.setText(mSched.nextIvlStr(this, mCurrentCard, Consts.BUTTON_TWO));
-            //if (buttonCount > 2) {
-            //    mNext3.setText(mSched.nextIvlStr(this, mCurrentCard, Consts.BUTTON_THREE));
-            //}
-            //if (buttonCount > 3) {
-            //    mNext4.setText(mSched.nextIvlStr(this, mCurrentCard, Consts.BUTTON_FOUR));
-            //}
+            if (buttonCount > 2) {
+                mNext3.setText(mSched.nextIvlStr(this, mCurrentCard, Consts.BUTTON_THREE));
+            }
+            if (buttonCount > 3) {
+                mNext4.setText(mSched.nextIvlStr(this, mCurrentCard, Consts.BUTTON_FOUR));
+            }
         }
     }
 
