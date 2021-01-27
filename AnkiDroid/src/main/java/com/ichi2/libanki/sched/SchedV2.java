@@ -1777,26 +1777,27 @@ public class SchedV2 extends AbstractSched {
 
         if ((minMax.second - minMax.first) != 0)
         {
-            int least_count         = Integer.MAX_VALUE;
-            int ivl_of_least_count  = ivl;
-            for (int test_ivl = minMax.first; (test_ivl <= minMax.second) && (least_count != 0); ++test_ivl)
-            {
-                int test_count = mCol.getDb().queryScalar("SELECT count() FROM (SELECT id FROM cards WHERE queue = " + Consts.QUEUE_TYPE_REV + " AND due == ?)", mToday + test_ivl);
-                if (test_count < least_count)
+            // @todo: properly test this algorithm
+            if (LowkeyAnkiDroidApp.getSharedPrefs(mCol.getContext()).getBoolean("load_balancer", false)) {
+                int least_count         = Integer.MAX_VALUE;
+                int ivl_of_least_count  = ivl;
+                for (int test_ivl = minMax.first; (test_ivl <= minMax.second) && (least_count != 0); ++test_ivl)
                 {
-                    ivl_of_least_count = test_ivl;
-                    least_count        = test_count;
+                    int test_count = mCol.getDb().queryScalar("SELECT count() FROM (SELECT id FROM cards WHERE queue = " + Consts.QUEUE_TYPE_REV + " AND due == ?)", mToday + test_ivl);
+                    if (test_count < least_count)
+                    {
+                        ivl_of_least_count = test_ivl;
+                        least_count        = test_count;
+                    }
                 }
-            }
 
-            if (false) {
-                // Anki's python uses random.randint(a, b) which returns x in [a, b] while the eq Random().nextInt(a, b)
-                // returns x in [0, b-a), hence the +1 diff with libanki
-                result = (new Random().nextInt(minMax.second - minMax.first + 1)) + minMax.first;
+                result = ivl_of_least_count;
             }
             else
             {
-                result = ivl_of_least_count;
+                // Anki's python uses random.randint(a, b) which returns x in [a, b] while the eq Random().nextInt(a, b)
+                // returns x in [0, b-a), hence the +1 diff with libanki
+                result = (new Random().nextInt(minMax.second - minMax.first + 1)) + minMax.first;
             }
         }
 
