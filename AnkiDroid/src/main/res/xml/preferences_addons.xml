@@ -32,12 +32,126 @@
         android:key="no_boost_penalties"
         android:summary="@string/addons_no_boost_penalties_summ"
         android:title="@string/addons_no_boost_penalties" />
-        <!-- android:dependency="gestures" -->
-    <CheckBoxPreference
-        android:defaultValue="false"
-        android:disableDependentsState="false"
-        android:key="load_balancer"
-        android:summary="@string/addons_load_balancer_summ"
-        android:title="@string/addons_load_balancer" />
-        <!-- android:dependency="gestures" -->
+
+
+    <PreferenceCategory android:title="@string/pref_cat_fuzziness" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:disableDependentsState="false"
+            android:key="load_balancer"
+            android:summary="@string/addons_load_balancer_summ"
+            android:title="@string/addons_load_balancer" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:disableDependentsState="false"
+            android:key="fuzz_override"
+            android:summary="@string/addons_fuzz_override_summ"
+            android:title="@string/addons_fuzz_override" />
+
+        <com.ichi2.ui.SeekBarPreference
+            android:defaultValue="0"
+            android:key="fuzz_2"
+            android:max="100"
+            android:summary="@string/addons_fuzz_2_summ"
+            android:text=" %"
+            android:title="@string/addons_fuzz_2"
+            android:dependency="fuzz_override"
+            app:interval="10"
+            app:min="0" />
+        <com.ichi2.ui.SeekBarPreference
+            android:defaultValue="0"
+            android:key="fuzz_2_min"
+            android:max="1"
+            android:summary="@string/addons_fuzz_2_min_summ"
+            android:text="  d"
+            android:title="@string/addons_fuzz_2_min"
+            android:dependency="fuzz_override"
+            app:interval="1"
+            app:min="0" />
+
+        <com.ichi2.ui.SeekBarPreference
+            android:defaultValue="0"
+            android:key="fuzz_3"
+            android:max="100"
+            android:summary="@string/addons_fuzz_3_summ"
+            android:text=" %"
+            android:title="@string/addons_fuzz_3"
+            android:dependency="fuzz_override"
+            app:interval="10"
+            app:min="0" />
+        <com.ichi2.ui.SeekBarPreference
+            android:defaultValue="1"
+            android:key="fuzz_3_min"
+            android:max="1"
+            android:summary="@string/addons_fuzz_3_min_summ"
+            android:text="  d"
+            android:title="@string/addons_fuzz_3_min"
+            android:dependency="fuzz_override"
+            app:interval="1"
+            app:min="0" />
+
+        <com.ichi2.ui.SeekBarPreference
+            android:defaultValue="25"
+            android:key="fuzz_7"
+            android:max="100"
+            android:summary="@string/addons_fuzz_7_summ"
+            android:text=" %"
+            android:title="@string/addons_fuzz_7"
+            android:dependency="fuzz_override"
+            app:interval="10"
+            app:min="0" />
+        <com.ichi2.ui.SeekBarPreference
+            android:defaultValue="0"
+            android:key="fuzz_7_min"
+            android:max="6"
+            android:summary="@string/addons_fuzz_7_min_summ"
+            android:text="  d"
+            android:title="@string/addons_fuzz_7_min"
+            android:dependency="fuzz_override"
+            app:interval="1"
+            app:min="0" />
+
+        <com.ichi2.ui.SeekBarPreference
+            android:defaultValue="15"
+            android:key="fuzz_30"
+            android:max="100"
+            android:summary="@string/addons_fuzz_30_summ"
+            android:text=" %"
+            android:title="@string/addons_fuzz_30"
+            android:dependency="fuzz_override"
+            app:interval="10"
+            app:min="0" />
+        <com.ichi2.ui.SeekBarPreference
+            android:defaultValue="2"
+            android:key="fuzz_30_min"
+            android:max="29"
+            android:summary="@string/addons_fuzz_30_min_summ"
+            android:text="  d"
+            android:title="@string/addons_fuzz_30_min"
+            android:dependency="fuzz_override"
+            app:interval="1"
+            app:min="0" />
+
+        <com.ichi2.ui.SeekBarPreference
+            android:defaultValue="5"
+            android:key="fuzz_inf"
+            android:max="100"
+            android:summary="@string/addons_fuzz_inf_summ"
+            android:text=" %"
+            android:title="@string/addons_fuzz_inf"
+            android:dependency="fuzz_override"
+            app:interval="10"
+            app:min="0" />
+        <com.ichi2.ui.SeekBarPreference
+            android:defaultValue="4"
+            android:key="fuzz_inf_min"
+            android:max="60"
+            android:summary="@string/addons_fuzz_inf_min_summ"
+            android:text="  d"
+            android:title="@string/addons_fuzz_inf_min"
+            android:dependency="fuzz_override"
+            app:interval="1"
+            app:min="0" />
+        </PreferenceCategory>
 </PreferenceScreen>

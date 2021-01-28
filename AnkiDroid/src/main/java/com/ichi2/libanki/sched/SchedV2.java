@@ -22,6 +22,7 @@ package com.ichi2.libanki.sched;
 import android.app.Activity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
@@ -1738,19 +1739,44 @@ public class SchedV2 extends AbstractSched {
 
 
     public @NonNull Pair<Integer, Integer> _fuzzIvlRange(int ivl) {
-
-        int fuzz;
-        if (ivl <= 2) {
-            fuzz = 0;
-        } else if (ivl < 7) {
-            fuzz = (int)(ivl * 0.15);
-        } else if (ivl < 30) {
-            fuzz = Math.max(2, (int)(ivl * 0.15));
-        } else {
-            fuzz = 4;
+        SharedPreferences preferences = LowkeyAnkiDroidApp.getSharedPrefs(mCol.getContext());
+        float fuzz_2     = 0.f;
+        float fuzz_3     = 0.f;
+        float fuzz_7     = 0.25f;
+        float fuzz_30    = 0.15f;
+        float fuzz_inf   = 0.05f;
+        int fuzz_min_2   = 0;
+        int fuzz_min_3   = 1;
+        int fuzz_min_7   = 0;
+        int fuzz_min_30  = 2;
+        int fuzz_min_inf = 4;
+        if (preferences.getBoolean("fuzz_override", false)) {
+            fuzz_2       = (float)preferences.getInt("fuzz_2",    0) / 100.f;
+            fuzz_3       = (float)preferences.getInt("fuzz_3",    0) / 100.f;
+            fuzz_7       = (float)preferences.getInt("fuzz_7",   25) / 100.f;
+            fuzz_30      = (float)preferences.getInt("fuzz_30",  15) / 100.f;
+            fuzz_inf     = (float)preferences.getInt("fuzz_inf",  5) / 100.f;
+            fuzz_min_2   = preferences.getInt("fuzz_2_min",   0);
+            fuzz_min_3   = preferences.getInt("fuzz_3_min",   1);
+            fuzz_min_7   = preferences.getInt("fuzz_7_min",   0);
+            fuzz_min_30  = preferences.getInt("fuzz_30_min",  2);
+            fuzz_min_inf = preferences.getInt("fuzz_inf_min", 4);
         }
 
-        return new Pair<Integer, Integer>(ivl - fuzz, ivl + fuzz);
+        int fuzz;
+        if      (ivl < 2)  { fuzz = Math.max(fuzz_min_2,   (int)(ivl*fuzz_2));   }
+        else if (ivl < 3)  { fuzz = Math.max(fuzz_min_3,   (int)(ivl*fuzz_3));   }
+        else if (ivl < 7)  { fuzz = Math.max(fuzz_min_7,   (int)(ivl*fuzz_7));   }
+        else if (ivl < 30) { fuzz = Math.max(fuzz_min_30,  (int)(ivl*fuzz_30));  }
+        else               { fuzz = Math.max(fuzz_min_inf, (int)(ivl*fuzz_inf)); }
+
+        Pair<Integer, Integer> range;
+        // @todo: this is a hack, maybe change it somehow?
+        if (ivl == 2)
+            range = new Pair<>(ivl, ivl + fuzz);
+        else
+            range = new Pair<>(ivl - fuzz, ivl + fuzz);
+        return range;
     }
 
 

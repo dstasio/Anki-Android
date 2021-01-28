@@ -39,6 +39,7 @@
     <string name="pref_cat_advanced_summ">Optimization and experimental features</string>
     <string name="pref_cat_addons">Addons</string>
     <string name="pref_cat_addons_summ">Additional unofficial features</string>
+    <string name="pref_cat_fuzziness">Fuzziness settings</string>
     <string name="pref_cat_performance">Performance</string>
     <string name="pref_cat_workarounds">Workarounds</string>
     <string name="pref_cat_plugins">Plugins</string>
@@ -286,4 +287,27 @@
     <string name="addons_no_boost_penalties_summ">Constant ease factor</string>
     <string name="addons_load_balancer">Balance load</string>
     <string name="addons_load_balancer_summ">Tweak fuzziness algorithm to balance reviews for each day</string>
+
+    <string name="addons_fuzz_override">Custom fuzziness multipliers</string>
+    <string name="addons_fuzz_override_summ">Override default fuzziness amounts</string>
+    <string name="addons_fuzz_2">ivl &lt; 2: multiplier</string>
+    <string name="addons_fuzz_2_summ">XXX%</string>
+    <string name="addons_fuzz_2_min">ivl &lt; 2: minimum fuzz</string>
+    <string name="addons_fuzz_2_min_summ">XXX d</string>
+    <string name="addons_fuzz_3">ivl &lt; 3: multiplier</string>
+    <string name="addons_fuzz_3_summ">XXX%</string>
+    <string name="addons_fuzz_3_min">ivl &lt; 3: minimum fuzz</string>
+    <string name="addons_fuzz_3_min_summ">XXX d</string>
+    <string name="addons_fuzz_7">ivl &lt; 7: multiplier</string>
+    <string name="addons_fuzz_7_summ">XXX%</string>
+    <string name="addons_fuzz_7_min">ivl &lt; 7: minimum fuzz</string>
+    <string name="addons_fuzz_7_min_summ">XXX d</string>
+    <string name="addons_fuzz_30">ivl &lt; 30: multiplier</string>
+    <string name="addons_fuzz_30_summ">XXX%</string>
+    <string name="addons_fuzz_30_min">ivl &lt; 30: minimum fuzz</string>
+    <string name="addons_fuzz_30_min_summ">XXX d</string>
+    <string name="addons_fuzz_inf">ivl &lt; inf: multiplier</string>
+    <string name="addons_fuzz_inf_summ">XXX%</string>
+    <string name="addons_fuzz_inf_min">ivl &lt; inf: minimum fuzz</string>
+    <string name="addons_fuzz_inf_min_summ">XXX d</string>
 </resources>
