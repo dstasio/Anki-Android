@@ -1705,22 +1705,29 @@ public class SchedV2 extends AbstractSched {
     }
 
     public int _fuzzedIvl(int ivl) {
+        SharedPreferences preferences = LowkeyAnkiDroidApp.getSharedPrefs(mCol.getContext());
         int result = ivl;
         Pair<Integer, Integer> minMax = _fuzzIvlRange(ivl);
 
         if ((minMax.second - minMax.first) != 0)
         {
             // @todo: properly test this algorithm
-            if (LowkeyAnkiDroidApp.getSharedPrefs(mCol.getContext()).getBoolean("load_balancer", false)) {
+            if (preferences.getBoolean("load_balancer", false)) {
                 int least_count         = Integer.MAX_VALUE;
                 int ivl_of_least_count  = ivl;
-                for (int test_ivl = minMax.first; (test_ivl <= minMax.second) && (least_count != 0); ++test_ivl)
-                {
-                    int test_count = mCol.getDb().queryScalar("SELECT count() FROM (SELECT id FROM cards WHERE queue = " + Consts.QUEUE_TYPE_REV + " AND due == ?)", mToday + test_ivl);
-                    if (test_count < least_count)
-                    {
-                        ivl_of_least_count = test_ivl;
-                        least_count        = test_count;
+                if (mToday != null) {
+                    for (int test_ivl = minMax.first; (test_ivl <= minMax.second) && (least_count != 0); ++test_ivl) {
+                        int test_count;
+                        // @todo: test
+                        if (preferences.getBoolean("load_balancer_localized", false))
+                            test_count = mCol.getDb().queryScalar("SELECT count() FROM (SELECT id FROM cards WHERE did in " + _deckLimit() + "AND queue = " + Consts.QUEUE_TYPE_REV + " AND due == ?)", mToday + test_ivl);
+                        else
+                            test_count = mCol.getDb().queryScalar("SELECT count() FROM (SELECT id FROM cards WHERE queue = " + Consts.QUEUE_TYPE_REV + " AND due == ?)", mToday + test_ivl);
+
+                        if (test_count < least_count) {
+                            ivl_of_least_count = test_ivl;
+                            least_count = test_count;
+                        }
                     }
                 }
 

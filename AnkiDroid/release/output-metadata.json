@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.ichi2.lowanki",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "arm64-v8a"
+        }
+      ],
+      "properties": [],
+      "versionCode": 321403300,
+      "versionName": "2.14.3",
+      "enabled": true,
+      "outputFile": "AnkiDroid-arm64-v8a-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "armeabi-v7a"
+        }
+      ],
+      "properties": [],
+      "versionCode": 121403300,
+      "versionName": "2.14.3",
+      "enabled": true,
+      "outputFile": "AnkiDroid-armeabi-v7a-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "x86"
+        }
+      ],
+      "properties": [],
+      "versionCode": 221403300,
+      "versionName": "2.14.3",
+      "enabled": true,
+      "outputFile": "AnkiDroid-x86-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "x86_64"
+        }
+      ],
+      "properties": [],
+      "versionCode": 421403300,
+      "versionName": "2.14.3",
+      "enabled": true,
+      "outputFile": "AnkiDroid-x86_64-release.apk"
+    }
+  ]
+}

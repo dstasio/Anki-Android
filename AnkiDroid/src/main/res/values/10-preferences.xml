@@ -287,6 +287,8 @@
     <string name="addons_no_boost_penalties_summ">Constant ease factor</string>
     <string name="addons_load_balancer">Balance load</string>
     <string name="addons_load_balancer_summ">Tweak fuzziness algorithm to balance reviews for each day</string>
+    <string name="addons_load_balancer_localized">Localized balance</string>
+    <string name="addons_load_balancer_localized_summ">Balance reviews for each deck separately</string>
 
     <string name="addons_fuzz_override">Custom fuzziness multipliers</string>
     <string name="addons_fuzz_override_summ">Override default fuzziness amounts</string>

@@ -26,6 +26,7 @@
         android:key="two_button_mode"
         android:summary="@string/addons_two_button_mode_summ"
         android:title="@string/addons_two_button_mode" />
+
     <CheckBoxPreference
         android:defaultValue="false"
         android:disableDependentsState="false"
@@ -41,6 +42,14 @@
             android:key="load_balancer"
             android:summary="@string/addons_load_balancer_summ"
             android:title="@string/addons_load_balancer" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:disableDependentsState="false"
+            android:key="load_balancer_localized"
+            android:dependency="load_balancer_localized"
+            android:summary="@string/addons_load_balancer_localized_summ"
+            android:title="@string/addons_load_balancer_localized" />
 
         <CheckBoxPreference
             android:defaultValue="false"
